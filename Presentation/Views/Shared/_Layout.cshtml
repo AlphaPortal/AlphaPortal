@@ -10,9 +10,20 @@
 </head>
 <body>
     
-            <main role="main">
-                @RenderBody()
-            </main>
+    <div class="portal-wrapper">
+        <aside id="sidebar">
+            <partial name="Partials/_Logotype" />
+            <partial name="Partial/_NavLinksSidebar" />
+        </aside>
+        <header>
+            <partial name="Partials/_Logotype" />
+            <partial name="Partials/_TopMenu" />
+        </header>
+    </div>
+
+    <main role="main">
+        @RenderBody()
+    </main>
         
 
     <script src="~/js/site.js" asp-append-version="true"></script>

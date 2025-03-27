@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
-    
-            <main role="main">
-                @RenderBody()
-            </main>
-        
+
+    <div class="centerscreen-wrapper">
+        <main class="main" >
+            @RenderBody()
+        </main>
+    </div>
 
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

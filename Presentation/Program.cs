@@ -1,9 +1,10 @@
 using Presentation.Middlewares;
+using Authentication.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
-
+builder.Services.AddLocalAuthentication(builder.Configuration.GetConnectionString("AlphaPortalDb")!);
 
 var app = builder.Build();
 app.UseHsts();

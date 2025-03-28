@@ -765,12 +765,12 @@ form {
 /* ============================= */
 /*           Logga in            */
 /* ============================= */
-#login {
+#signin {
     width: 600px;
     text-align: center;
 }
 
-    #login .card-header {
+    #signin .card-header {
         justify-content: center;
         margin-top: 2rem;
     }

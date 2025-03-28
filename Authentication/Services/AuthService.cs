@@ -13,4 +13,9 @@ public class AuthService(SignInManager<AppUser> signInManager) : IAuthService
         var result = await _signInManager.PasswordSignInAsync(email, password, rememberMe, false);
         return result.Succeeded;
     }
+
+    public async Task SignOutAsync()
+    {
+        await _signInManager.SignOutAsync();
+    }
 }

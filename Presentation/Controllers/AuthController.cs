@@ -1,6 +1,7 @@
 ﻿using Authentication.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
+using System.Threading.Tasks;
 
 namespace Presentation.Controllers
 {
@@ -10,29 +11,41 @@ namespace Presentation.Controllers
         private readonly IAuthService _authService = authService;
 
         [Route("auth/signin")]
-        public IActionResult SignIn()
+        public IActionResult SignIn(string returnUrl = "~/")
         {
+            ViewBag.ReturnUrl = returnUrl;
+            ViewBag.ErrorMessage = "";
             return View();
         }
 
         [HttpPost]
         [Route("auth/signin")]
-        public IActionResult SignIn(SignInViewModel model)
+        public async Task<IActionResult> SignIn(SignInViewModel model, string returnUrl = "~/")
         {
+            if (ModelState.IsValid)
+            {
+                var result = await _authService.SignInAsync(model.Email, model.Password, model.RememberMe);
+                if (result)
+                {
+                    return LocalRedirect(returnUrl);
+                }
+            }
 
-
-            return View();
+            ViewBag.ReturnUrl = returnUrl;
+            ViewBag.ErrorMessage = "Unable to sign in. Try another email or password";
+            return View(model);
         }
 
-        [Route("auth/signup")]
-        public IActionResult SignUp()
-        {
-            return View();
-        }
+        //[Route("auth/signup")]
+        //public IActionResult SignUp()
+        //{
+        //    return View();
+        //}
 
         [Route("auth/logout")]
-        public IActionResult LogOut()
+        public async Task<IActionResult> LogOut()
         {
+            await _authService.SignOutAsync();
             return View();
         }
     }

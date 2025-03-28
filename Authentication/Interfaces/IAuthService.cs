@@ -5,5 +5,5 @@ namespace Authentication.Interfaces;
 
 public interface IAuthService
 {
-    Task<SignInResult> SignInAsync(SignInForm form);
+    Task<bool> SignInAsync(SignInForm form);
 }

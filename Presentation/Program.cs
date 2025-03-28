@@ -4,7 +4,7 @@ using Authentication.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddLocalAuthentication(builder.Configuration.GetConnectionString("AlphaPortalDb")!);
+builder.Services.AddLocalAuthentication(builder.Configuration.GetConnectionString("UsersDatabase")!);
 
 var app = builder.Build();
 app.UseHsts();
@@ -15,6 +15,9 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseDefaultRoles();
+app.UseDefaultAdminAccount();
 
 app.MapStaticAssets();
 app.MapControllerRoute(

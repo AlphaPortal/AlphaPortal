@@ -19,12 +19,10 @@
             <partial name="Partials/_Logotype" />
             <partial name="Partials/_TopMenu" />
         </header>
+        <main role="main">
+            @RenderBody()
+        </main>
     </div>
-
-    <main role="main">
-        @RenderBody()
-    </main>
-        
 
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

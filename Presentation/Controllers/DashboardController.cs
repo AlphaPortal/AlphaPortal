@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Presentation.Controllers
-{
+namespace Presentation.Controllers;
 
-    public class DashboardController : Controller
+
+public class DashboardController : Controller
+{
+    [Route("admin/dashboard")]
+    public IActionResult Index()
     {
-        //[Route("admin/dashboard")]
-        public IActionResult Index()
-        {
-            return View();
-        }
+        return View();
     }
 }

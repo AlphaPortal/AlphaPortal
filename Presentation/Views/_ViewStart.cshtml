@@ -1,14 +1,13 @@
 ﻿@{
 
-    Layout = "_Layout";
-    // var currentPath = Context.Request.Path.Value?.ToLowerInvariant() ?? string.Empty;
+    var currentPath = Context.Request.Path.Value?.ToLowerInvariant() ?? string.Empty;
 
-    // if (currentPath.StartsWith("/admin"))
-    // {
-    //     Layout = "_Layout";
-    // }
-    // else
-    // {
-    //     Layout = "_CenterScreen";
-    // }
+    if (currentPath.StartsWith("/admin"))
+    {
+        Layout = "_Layout";
+    }
+    else
+    {
+        Layout = "_CenterScreen";
+    }
 }

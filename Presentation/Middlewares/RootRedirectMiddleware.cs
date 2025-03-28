@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace Presentation.Middlewares;
+﻿namespace Presentation.Middlewares;
 
 public static class RootRedirectMiddlewareExtensions
 {

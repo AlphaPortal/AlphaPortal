@@ -1,0 +1,28 @@
+﻿<div class="profile-menu-container">
+    <img id="profileAvatar" class="profile-avatar" src="~/Images/Avatars/avatar.svg" />
+</div>
+
+<div id="profileDropdown" class="profile-dropdown">
+    <div class="profile-info">
+        <img class="profile-avatar-mini" src="~/Images/Avatars/avatar.svg" />
+        <span class="profile-name">Björn Åhström</span>
+    </div>
+
+    <div class="profile-action">
+        <div class="label">
+            <i class="bi bi-gear-fill"></i>
+            <span>Dark Mode</span>
+        </div>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle" data-type="toggle" data-func="darkmode"/>
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <div class="divider"></div>
+
+    <a class="profile-logout" asp-controller="Auth" asp-action="SignOut">
+        <i class="bi bi-box-arrow-right"></i>
+        <span>Sign out</span>
+    </a>
+</div>

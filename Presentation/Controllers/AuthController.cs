@@ -1,7 +1,6 @@
 ﻿using Authentication.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
-using System.Threading.Tasks;
 
 namespace Presentation.Controllers
 {
@@ -10,7 +9,7 @@ namespace Presentation.Controllers
 
         private readonly IAuthService _authService = authService;
 
-        [Route("auth/signin")]
+        [Route("auth/login")]
         public IActionResult SignIn(string returnUrl = "~/")
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -19,7 +18,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-        [Route("auth/signin")]
+        [Route("auth/login")]
         public async Task<IActionResult> SignIn(SignInViewModel model, string returnUrl = "~/")
         {
             if (ModelState.IsValid)
@@ -42,11 +41,11 @@ namespace Presentation.Controllers
         //    return View();
         //}
 
-        [Route("auth/logout")]
-        public async Task<IActionResult> LogOut()
+        [Route("auth/signout")]
+        public new async Task<IActionResult> SignOut()
         {
             await _authService.SignOutAsync();
-            return View();
+            return LocalRedirect("~/");
         }
     }
 }

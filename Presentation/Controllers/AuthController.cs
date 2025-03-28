@@ -1,5 +1,6 @@
 ﻿using Authentication.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.Models;
 
 namespace Presentation.Controllers
 {
@@ -16,7 +17,7 @@ namespace Presentation.Controllers
 
         [HttpPost]
         [Route("auth/signin")]
-        public IActionResult SignIn()
+        public IActionResult SignIn(SignInViewModel model)
         {
 
 

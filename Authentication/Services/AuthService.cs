@@ -8,9 +8,9 @@ public class AuthService(SignInManager<AppUser> signInManager) : IAuthService
 
     private readonly SignInManager<AppUser> _signInManager = signInManager;
 
-    public async Task<bool> SignInAsync(SignInForm form)
+    public async Task<bool> SignInAsync(string email, string password, bool rememberMe = false)
     {
-        var result = await _signInManager.PasswordSignInAsync(form.Email, form.Password, form.RememberMe, false);
+        var result = await _signInManager.PasswordSignInAsync(email, password, rememberMe, false);
         return result.Succeeded;
     }
 }

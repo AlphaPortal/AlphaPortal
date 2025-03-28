@@ -5,5 +5,5 @@ namespace Authentication.Interfaces;
 
 public interface IAuthService
 {
-    Task<bool> SignInAsync(SignInForm form);
+    Task<bool> SignInAsync(string email, string password, bool rememberMe = false);
 }

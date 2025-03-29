@@ -4,8 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initCloseButtons()
     initMobileMenu()
     initModals()
+    initNotificationsMenuDropDown()
     initProfileOptionsDropDown()
-    initSettingsMenuDropDown();
+    initSettingsMenuDropDown()
     initToggles()
 })
 
@@ -63,6 +64,21 @@ function initProfileOptionsDropDown() {
 function initSettingsMenuDropDown() {
     const icon = document.getElementById('settingsIcon')
     const dropdown = document.getElementById('settingsDropdown')
+
+    icon.addEventListener('click', function () {
+        dropdown.classList.toggle('show')
+    });
+
+    document.addEventListener('click', function (e) {
+        if (!icon.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.remove('show')
+        }
+    });
+}
+
+function initNotificationsMenuDropDown() {
+    const icon = document.getElementById('notificationsIcon')
+    const dropdown = document.getElementById('notificationsDropdown')
 
     icon.addEventListener('click', function () {
         dropdown.classList.toggle('show')

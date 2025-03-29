@@ -834,6 +834,56 @@ form {
 }
 
 /* ============================= */
+/*       Notificationsmeny            */
+/* ============================= */
+.notifications-menu-container {
+    position: relative;
+    display: inline-block;
+    z-index: 0;
+}
+
+.notifications-symbol {
+    position: absolute;
+    left: 8px
+}
+
+.outer-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid var(--background-color)
+}
+
+.inner-red-circle {
+    border-radius: 50%;
+    border: 2.3px solid red;
+}
+
+.notifications-icon {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.notifications-dropdown {
+    position: absolute;
+    top: 80px;
+    right: 200px;
+    background: var(--card-background-color);
+    border: var(--card-border-color);
+    border-radius: 16px;
+    min-width: 250px;
+    box-shadow: var(--box-shadow);
+    display: none;
+    z-index: 999;
+}
+
+    .notifications-dropdown.show {
+        display: block;
+    }
+
+/* ============================= */
 /*       Settingsmeny            */
 /* ============================= */
 .settings-menu-container {
@@ -851,7 +901,7 @@ form {
 .settings-dropdown {
     position: absolute;
     top: 80px;
-    right: 80px;
+    right: 150px;
     background: var(--card-background-color);
     border: var(--card-border-color);
     border-radius: 16px;

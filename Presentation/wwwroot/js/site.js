@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu()
     initModals()
     initProfileOptionsDropDown()
+    initSettingsMenuDropDown();
     initToggles()
 })
 
@@ -58,6 +59,22 @@ function initProfileOptionsDropDown() {
         }
     });
 }
+
+function initSettingsMenuDropDown() {
+    const icon = document.getElementById('settingsIcon')
+    const dropdown = document.getElementById('settingsDropdown')
+
+    icon.addEventListener('click', function () {
+        dropdown.classList.toggle('show')
+    });
+
+    document.addEventListener('click', function (e) {
+        if (!icon.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.remove('show')
+        }
+    });
+}
+
 
 function removeSidebarShowOnResize() {
     const sidebar = document.getElementById('sidebar')

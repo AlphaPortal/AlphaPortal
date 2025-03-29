@@ -249,6 +249,18 @@ html, body {
     display: none;
 }
 
+.search-group{
+    display: flex;
+    align-items: center;
+}
+
+.search-btn {
+    font-size: 22px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
 @media (min-width: 768px) {
     .searchbar-container {
         display: block;
@@ -813,6 +825,47 @@ form {
 }
 
 /* ============================= */
+/*          Topmeny              */
+/* ============================= */
+
+.top-menu-divader{
+    height: 31px;
+    border: 1px solid var(--border-color);
+}
+
+/* ============================= */
+/*       Settingsmeny            */
+/* ============================= */
+.settings-menu-container {
+    position: relative;
+    display: inline-block;
+    z-index: 0;
+}
+
+.settings-icon {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.settings-dropdown {
+    position: absolute;
+    top: 80px;
+    right: 80px;
+    background: var(--card-background-color);
+    border: var(--card-border-color);
+    border-radius: 16px;
+    min-width: 250px;
+    box-shadow: var(--box-shadow);
+    display: none;
+    z-index: 999;
+}
+
+    .settings-dropdown.show {
+        display: block;
+    }
+
+/* ============================= */
 /*       Profilmeny            */
 /* ============================= */
 .profile-menu-container {
@@ -830,8 +883,8 @@ form {
 
 .profile-dropdown {
     position: absolute;
-    top: 50px;
-    right: 0;
+    top: 80px;
+    right: 50px;
     background: var(--card-background-color);
     border: var(--card-border-color);
     border-radius: 16px;

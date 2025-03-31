@@ -775,17 +775,50 @@ form {
     }
 
 /* ============================= */
-/*           Logga in            */
+/*           Sign In            */
 /* ============================= */
 #signin {
     width: 600px;
     text-align: center;
 }
 
-    #signin .card-header {
-        justify-content: center;
-        margin-top: 2rem;
-    }
+#signin .card-header {
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+
+
+.remember-me-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.remember-me-group > a {
+    cursor: pointer;
+}
+
+#rememberMe[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+/* ============================= */
+/*       external Sign In        */
+/* ============================= */
+.btn-external {
+    width: 100%;
+    height: 48px;
+}
+
 
 /* ============================= */
 /*           Sign Up            */

@@ -923,7 +923,7 @@ form {
 
 .notifications-symbol {
     position: absolute;
-    left: 8px
+    left: 11px
 }
 
 .outer-circle {
@@ -931,23 +931,25 @@ form {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    border: 2px solid var(--background-color)
+    border: 3px solid var(--background-color)
 }
 
 .inner-red-circle {
     border-radius: 50%;
-    border: 2.3px solid red;
+    border: 3.5px solid red;
 }
 
 .notifications-icon {
-    width: 22px;
-    height: 22px;
     cursor: pointer;
 }
+.notifications-icon > i{
+    font-size: 22px;
+}
 
-.notifications-dropdown {
+.notifications-dropdown-container {
     position: absolute;
-    top: 80px;
+    padding: 0 8px;
+    top: 70px;
     right: 200px;
     background: var(--card-background-color);
     border: var(--card-border-color);
@@ -958,9 +960,73 @@ form {
     z-index: 999;
 }
 
-    .notifications-dropdown.show {
-        display: block;
+.notifications-dropdown-container.show {
+    display: block;
+}
+
+    .notifications-dropdown-container > header {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+       
     }
+
+        .notifications-dropdown-container > header > h1 {
+            padding: 0;
+            margin: 0.5rem 1rem;
+        }
+
+    .notifications-red-circle {
+        width: 20px;
+        height: 20px;
+        margin-right: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background-color: red;
+    }
+
+    .notifications-red-circle > p {
+        font-size: 0.7rem;
+        color: var(--white-100)
+    }
+
+    .notification-item-container {
+        padding: 10px 11px;
+        margin: 1rem 0;
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        background-color: var(--gray-100);
+        border-radius: 14px;
+    }
+
+    .notification-item-container > img {
+        width: 56px;
+        height: 56px;
+    }
+
+    .notification-item-container > button {
+        margin-right: 20px;
+    }
+
+    .notification-item-body {
+        margin-left: 1rem;
+    }
+
+.notification-item-body > p:nth-child(1) {
+    margin: 0;
+}
+
+.notification-item-body > p:nth-child(2) {
+    margin: 0;
+    color: var(--gray-800)
+}
+
 
 /* ============================= */
 /*       Settingsmeny            */
@@ -972,14 +1038,15 @@ form {
 }
 
 .settings-icon {
-    width: 22px;
-    height: 22px;
     cursor: pointer;
+}
+.settings-icon > i {
+    font-size: 22px;
 }
 
 .settings-dropdown {
     position: absolute;
-    top: 80px;
+    top: 70px;
     right: 150px;
     background: var(--card-background-color);
     border: var(--card-border-color);
@@ -990,9 +1057,9 @@ form {
     z-index: 999;
 }
 
-    .settings-dropdown.show {
-        display: block;
-    }
+.settings-dropdown.show {
+    display: block;
+}
 
 /* ============================= */
 /*       Profilmeny            */
@@ -1012,7 +1079,7 @@ form {
 
 .profile-dropdown {
     position: absolute;
-    top: 80px;
+    top: 70px;
     right: 50px;
     background: var(--card-background-color);
     border: var(--card-border-color);

@@ -1,5 +1,16 @@
-﻿<div class="top-menu">
-    <partial name="Partials/_notificationsMenu" />
+﻿
+@{
+    var notifications = new List<NotificationItem>
+    {
+        new NotificationItem { ProjectName = "Projekt A", CreatedAt = DateTime.UtcNow, ImageUrl = "/Images/CardImages/card-image1.svg" },
+        new NotificationItem { ProjectName = "Projekt B", CreatedAt = DateTime.UtcNow, ImageUrl = "/Images/CardImages/card-image1.svg" },
+        new NotificationItem { ProjectName = "Projekt C", CreatedAt = DateTime.UtcNow, ImageUrl = "/Images/CardImages/card-image1.svg" },
+        new NotificationItem { ProjectName = "Projekt D", CreatedAt = DateTime.UtcNow, ImageUrl = "/Images/CardImages/card-image1.svg" }
+    };
+}
+
+<div class="top-menu">
+    <partial name="Partials/_notificationsMenu" model="notifications" />
     <partial name="Partials/_SettingsMenu" />
     <div class="top-menu-divader"></div>
     <partial name="Partials/_ProfileOptionsMenu" />

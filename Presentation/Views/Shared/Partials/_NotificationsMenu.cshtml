@@ -1,4 +1,6 @@
-﻿<div class="notifications-menu-container">
+﻿@model List<NotificationItem>
+
+<div class="notifications-menu-container">
     <div id="notificationsIcon" class="notifications-icon">
 
         <div class="notifications-symbol">
@@ -10,6 +12,21 @@
     </div>
 </div>
 
-<div id="notificationsDropdown" class="notifications-dropdown">
-    <p>Notifications</p>
+<div id="notificationsDropdown" class="notifications-dropdown-container">
+
+    <header>
+        <h1 class="h3">Notifications</h1>
+        <div class="notifications-red-circle">
+            <p>@Model.Count()</p>
+        </div>
+    </header>
+
+
+    @if (Model != null && Model.Any())
+    {
+        @foreach(var item in Model)
+        {
+            @await Html.PartialAsync("Partials/Components/_NotificationItem", item)
+        }
+    }
 </div>

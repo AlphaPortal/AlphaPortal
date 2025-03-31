@@ -1,9 +1,11 @@
-﻿<div class="notification-item-container">
-    <img src="" alt="Notification Image" />
+﻿@model NotificationItem
+
+<div class="notification-item-container">
+    <img src="@Model.ImageUrl" alt="Notification Image" />
 
     <div class="notification-item-body" >
-        <p>Project name</p>
-        <p>1 min ago</p>
+        <p>@Model.ProjectName</p>
+        <p>@Model.CreatedAt</p>
     </div>
 
     <button class="btn btn-close"></button>

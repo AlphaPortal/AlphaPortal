@@ -4,9 +4,9 @@ namespace Data.Entities;
 
 public class NotificationTargetEntity
 {
-    [Key]
+     [Key]
     public int Id { get; set; }
     public string TargetName { get; set; } = null!;
 
-    public ICollection<NotificationEntity> Notifications { get; set; } = [];
+    public virtual ICollection<NotificationEntity> Notifications { get; set; } = [];
 }

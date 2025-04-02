@@ -12,7 +12,7 @@ public static class RepositoryExtensions
         services.AddScoped<INotificationRepository, NotificationRepository>();
         services.AddScoped<INotificationTargerRepository, NotificationTargerRepository>();
         services.AddScoped<INotificationTypeRepository, NotificationTypeRepository>();
-        services.AddScoped<IUserDisMissNotificationRepository, UserDisMissNotificationRepository>();
+        services.AddScoped<IUserDisMissNotificationRepository, UserDisMissedNotificationRepository>();
 
 
         return services;

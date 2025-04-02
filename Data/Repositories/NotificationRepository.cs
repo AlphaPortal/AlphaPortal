@@ -11,7 +11,7 @@ public class NotificationRepository(DataContext context) : BaseRepository<Notifi
 {
     public async Task<NotificationResult<Notification>> GetLatestNotificationAsync()
     {
-        var entity = await _db.OrderByDescending(x => x.CreatedAt).FirstOrDefaultAsync();
+        var entity = await _db.OrderByDescending(x => x.CreateDate).FirstOrDefaultAsync();
         if (entity == null)
         {
             return new NotificationResult<Notification> { Succeeded = false, StatusCode = 400, Error = "Something went wrong." };

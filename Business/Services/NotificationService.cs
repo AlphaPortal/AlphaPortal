@@ -1,5 +1,7 @@
 ﻿using Business.Models;
+using Data.Entities;
 using Data.Interfaces;
+using Domain.Extensions;
 using Domain.Responses;
 
 namespace Business.Services;
@@ -33,6 +35,17 @@ public class NotificationService(INotificationRepository notificationRepository,
             }
         }
 
+        var notificationEntity = form.MapTo<NotificationEntity>();
+        var result = await _notificationRepository.AddAsync(notificationEntity);
 
+        if (result.Succeeded)
+        {
+            var notificationResult = await _notificationRepository.GetLatestNotificationAsync();
+            
+        }
+
+        return result.Succeeded
+            ? new NotificationResult { Succeeded = true, StatusCode = 200 }
+            : new NotificationResult { Succeeded = false, StatusCode = result.StatusCode, Error = result.Error};
     }
 }

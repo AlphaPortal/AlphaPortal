@@ -1,10 +1,12 @@
 using Presentation.Middlewares;
 using Authentication.Extensions;
+using Data.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddLocalAuthentication(builder.Configuration.GetConnectionString("UsersDatabase")!);
+builder.Services.AddRepositories(builder.Configuration);
 
 var app = builder.Build();
 app.UseHsts();

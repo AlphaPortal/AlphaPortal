@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddLocalAuthentication(builder.Configuration.GetConnectionString("UsersDatabase")!);
+builder.Services.AddDataContext(builder.Configuration.GetConnectionString("AlphaPortalDatabase")!);
 builder.Services.AddRepositories(builder.Configuration);
 
 var app = builder.Build();

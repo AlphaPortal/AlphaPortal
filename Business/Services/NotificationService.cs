@@ -81,5 +81,19 @@ public class NotificationService(INotificationRepository notificationRepository,
         return new NotificationResult<IEnumerable<Notification>> { Succeeded = false, StatusCode = 400, Error = notificationResult.Error };
     }
 
-  
+  public async Task DismissNotificationAsync(string notificationId, string userId)
+    {
+        var exists = await _userDisMissNotificationRepository.ExistsAsync(x => x.NotificationId == notificationId &&  x.UserId == userId);
+        if (!exists.Succeeded)
+        {
+            var entity = new UserDismissNotificationEntity
+            {
+                NotificationId = notificationId,
+                UserId = userId,
+            };
+        }
+
+        await _userDisMissNotificationRepository.AddAsync(entity);
+        await _notificationHub.Clients.User(userId).SendAsync("NotificationDisMissed", notificationId);
+    }
 }

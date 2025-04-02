@@ -1,18 +1,18 @@
 ﻿
 @{
-    var notifications = new List<NotificationItem>
+    var notifications = new List<NotificationItemForm>
     {
-        new NotificationItem { ProjectName = "Projekt A", CreatedAt = DateTime.UtcNow, ImageUrl = "/Images/CardImages/card-image1.svg" },
-        new NotificationItem { ProjectName = "Projekt B", CreatedAt = DateTime.UtcNow, ImageUrl = "/Images/CardImages/card-image1.svg" },
-        new NotificationItem { ProjectName = "Projekt C", CreatedAt = DateTime.UtcNow, ImageUrl = "/Images/CardImages/card-image1.svg" },
-        new NotificationItem { ProjectName = "Projekt D", CreatedAt = DateTime.UtcNow, ImageUrl = "/Images/CardImages/card-image1.svg" }
+        new NotificationItemForm { ProjectName = "Projekt A", CreatedAt = DateTime.UtcNow, ImageUrl = "/Images/CardImages/card-image1.svg" },
+        new NotificationItemForm { ProjectName = "Projekt B", CreatedAt = DateTime.UtcNow, ImageUrl = "/Images/CardImages/card-image1.svg" },
+        new NotificationItemForm { ProjectName = "Projekt C", CreatedAt = DateTime.UtcNow, ImageUrl = "/Images/CardImages/card-image1.svg" },
+        new NotificationItemForm { ProjectName = "Projekt D", CreatedAt = DateTime.UtcNow, ImageUrl = "/Images/CardImages/card-image1.svg" }
     };
 }
 
 <div class="top-menu">
     <partial name="Partials/_notificationsMenu" model="notifications" />
     <partial name="Partials/_SettingsMenu" />
-    <div class="top-menu-divader"></div>
+    <div class="top-menu-divider"></div>
     <partial name="Partials/_ProfileOptionsMenu" />
     @* <button type="button" data-type="menu" data-target="#sidebar" class="btn-menu"></button> *@
 </div>

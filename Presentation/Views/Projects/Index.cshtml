@@ -1,0 +1,16 @@
+﻿@model List<Project>
+
+<div>
+    @if (Model != null && Model.Any())
+    {
+        foreach (var project in Model)
+        {
+            @await Html.PartialAsync("Partials/Components/_ProjectCard", project)
+        }
+    }
+    else
+    {
+        <h1>No Projects</h1>
+    }
+
+</div>

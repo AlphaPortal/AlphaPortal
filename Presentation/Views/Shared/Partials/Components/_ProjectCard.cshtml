@@ -1,0 +1,22 @@
+﻿@model Project
+
+<div id="projectCard" class="card">
+    <div class="project-card-header">
+        <img src="~/Images/CardImages/card-image1.svg" alt="Card Image"/>
+
+        <div class="card-label">
+            <p>@Model.Title</p>
+            <p>@Model.CompanyName</p>
+        </div>
+
+        <button>
+            <img src="~/Images/ButtonImages/two_dots.svg" alt="Card Menu Button Image" />
+        </button>
+    </div>
+    <main class="card-body">
+        <p>@Model.Description</p>
+    </main>
+    <footer class="card-footer">
+        <p>@Model.TimeLeft</p>
+    </footer>
+</div>

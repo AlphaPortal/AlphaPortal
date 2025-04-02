@@ -267,7 +267,7 @@ html, body {
     }
 }
 
-header {
+.menu-header {
     grid-area: header;
     border-bottom: 1px solid var(--border-color);
     display: grid;
@@ -279,33 +279,33 @@ header {
 }
 
     /* Specifik logotyp för mobil */
-    header .logotype {
+    .menu-header .logotype {
         display: flex;
     }
 
 @media (min-width: 768px) {
-    header {
+    .menu-header {
         grid-template-columns: auto 1fr auto;
     }
 }
 
 @media (min-width: 1200px) {
-    header {
+    .menu-header {
         grid-template-columns: 1fr auto;
         gap: 10rem;
         padding: 1rem 3rem;
     }
 
-        header .logotype {
+        .menu-header .logotype {
             display: none;
         }
 
-        header .btn-menu {
+        .menu-header .btn-menu {
             display: none;
         }
 }
 
-header .top-menu {
+.menu-header .top-menu {
     display: flex;
     align-items: center;
     gap: 2rem;
@@ -746,7 +746,7 @@ form {
 }
 
 /* ============================= */
-/*           Kort              */
+/*           Card                */
 /* ============================= */
 .card {
     background-color: var(--card-background-color);
@@ -759,20 +759,38 @@ form {
     box-shadow: var(--box-shadow);
 }
 
-    .card .card-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 2rem;
+.card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.card .card-body {
+    margin: 0 2rem;
+}
+
+.card .card-footer {
+    margin-top: 2rem;
+}
+
+/* Project Card */
+
+#projectCard {
+    width: 350px;
+}
+
+    #projectCard .project-card-header {
+        border: 1px solid red;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
     }
 
-    .card .card-body {
-        margin: 0 2rem;
-    }
-
-    .card .card-footer {
-        margin-top: 2rem;
-    }
+#projectCard .card-label {
+   
+}
 
 /* ============================= */
 /*           Sign In            */
@@ -907,7 +925,7 @@ form {
 /*          Topmeny              */
 /* ============================= */
 
-.top-menu-divader{
+.top-menu-divider{
     height: 31px;
     border: 1px solid var(--border-color);
 }

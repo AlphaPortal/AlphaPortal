@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Databases\" />
-    <Folder Include="Entities\" />
     <Folder Include="Services\" />
   </ItemGroup>
 
@@ -23,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Authentication\Authentication.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 

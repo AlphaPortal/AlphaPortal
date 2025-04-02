@@ -1,18 +1,7 @@
-﻿
-@{
-    var notifications = new List<NotificationItemForm>
-    {
-        new NotificationItemForm { ProjectName = "Projekt A", CreatedAt = DateTime.UtcNow, ImageUrl = "/Images/CardImages/card-image1.svg" },
-        new NotificationItemForm { ProjectName = "Projekt B", CreatedAt = DateTime.UtcNow, ImageUrl = "/Images/CardImages/card-image1.svg" },
-        new NotificationItemForm { ProjectName = "Projekt C", CreatedAt = DateTime.UtcNow, ImageUrl = "/Images/CardImages/card-image1.svg" },
-        new NotificationItemForm { ProjectName = "Projekt D", CreatedAt = DateTime.UtcNow, ImageUrl = "/Images/CardImages/card-image1.svg" }
-    };
-}
-
-<div class="top-menu">
-    <partial name="Partials/_notificationsMenu" model="notifications" />
+﻿<div class="top-menu">
+    <partial name="Partials/_notificationsMenu"/>
     <partial name="Partials/_SettingsMenu" />
     <div class="top-menu-divider"></div>
     <partial name="Partials/_ProfileOptionsMenu" />
-    @* <button type="button" data-type="menu" data-target="#sidebar" class="btn-menu"></button> *@
+    <button type="button" data-type="menu" data-target="#sidebar" class="btn-menu"></button>
 </div>

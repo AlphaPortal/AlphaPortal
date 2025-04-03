@@ -49,4 +49,16 @@ public class UserService(IUserRepository userRepository, UserManager<AppUser> us
 
         return new UserResult { Succeeded = false, StatusCode = 404, Error = $"User was not found." };
     }
+
+    public async Task<UserResult> AddUserToRoleAsync(AppUser user, string roleName)
+    {
+        var result = await _roleManager.RoleExistsAsync(roleName);
+        if (result)
+        {
+            await _userManager.AddToRoleAsync(user, roleName);
+            return new UserResult { Succeeded = true, StatusCode = 200 };
+        }
+
+        return new UserResult { Succeeded = false };
+    }
 }

@@ -5,7 +5,10 @@
 }
 
 <div class="projects-container">
-    <h1>@ViewData["Title"]</h1>
+    <div class="projects-header">
+        <h1>@ViewData["Title"]</h1>
+        <button class="btn btn-add">Add Project</button>
+    </div>
     @await Html.PartialAsync("Partials/Components/_SortBar") 
 
     <div class="projects">

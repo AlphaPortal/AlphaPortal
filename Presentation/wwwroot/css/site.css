@@ -780,12 +780,18 @@ form {
 
 .projects {
     margin: 0;
+    margin-top: 1rem;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
     overflow-y: auto;
-    max-height: 80vh; /* Limits the heigt so there is room for other elements */
+    max-height: 68vh; /* Limits the heigt so there is room for other elements */
     padding-right: 5px; /* Prevent that the scroll bar overlap */
+}
+
+.projects-header {
+    display: flex;
+    justify-content: space-between;
 }
 
 #projectCard {

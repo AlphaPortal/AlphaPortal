@@ -26,5 +26,16 @@ public class UserService(IUserRepository userRepository, UserManager<AppUser> us
         return new UserResult<IEnumerable<User>> { Succeeded = false, StatusCode = 400, Error = repositoryResult.Error };
     }
 
-    
+    public async Task<UserResult<User>> GetUserById(string id)
+    {
+        var repositoryResult = await _userRepository.GetAsync(x => x.Id == id);
+        var entity = repositoryResult.Result;
+        if (entity != null)
+        {
+            var user = entity.MapTo<User>();
+            return new UserResult<User> { Succeeded = true, StatusCode = 200, Result = user };
+        }
+
+        return new UserResult<User> { Succeeded = false, StatusCode = 404, Error = $"User with id '{id}' was not found." };
+    }
 }

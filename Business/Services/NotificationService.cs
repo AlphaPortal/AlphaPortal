@@ -26,17 +26,17 @@ public class NotificationService(INotificationRepository notificationRepository,
             return new NotificationResult { Succeeded = false, StatusCode = 400 };
         }
 
-        if (string.IsNullOrEmpty(form.ImageUrl))
+        if (string.IsNullOrEmpty(form.Image))
         {
             switch (form.NotificationTypeId)
             {
                 // User
                 case 1:
-                    form.ImageUrl = "Images/Profiles/avatar.svg";
+                    form.Image = "Images/Profiles/avatar.svg";
                     break;
                 // Project
                 case 2:
-                    form.ImageUrl = "Images/Projects/project-image.svg";
+                    form.Image = "Images/Projects/project-image.svg";
                     break;
             }
         }

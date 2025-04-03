@@ -1,12 +1,10 @@
-﻿using System.Data;
-
-namespace Business.Models;
+﻿namespace Business.Models;
 
 public class NotificationItemForm
 {
     public int NotificationTypeId { get; set; }
     public int NotificationTargetId { get; set; }
     public string Message { get; set; } = null!;
-    public string ImageUrl { get; set; } = null!;
+    public string? Image { get; set; }
     public string? UserId { get; set; }
 }

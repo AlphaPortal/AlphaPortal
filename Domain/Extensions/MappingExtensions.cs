@@ -8,12 +8,12 @@ public static class MappingExtensions
     {
         ArgumentNullException.ThrowIfNull(source, nameof(source));
 
-        TDestination destination = Activator.CreateInstance<TDestination>();
+        TDestination destination = Activator.CreateInstance<TDestination>()!;
 
         var sourceProperties = source.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
-        var destinationProperties = source.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+        var destinationProperties = destination.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
-        foreach(var destinationProperty in destinationProperties)
+        foreach (var destinationProperty in destinationProperties)
         {
             var sourceProperty = sourceProperties.FirstOrDefault(x => x.Name == destinationProperty.Name && x.PropertyType == destinationProperty.PropertyType);
             if (sourceProperty != null && destinationProperty.CanWrite)
@@ -24,5 +24,6 @@ public static class MappingExtensions
         }
 
         return destination;
+
     }
 }

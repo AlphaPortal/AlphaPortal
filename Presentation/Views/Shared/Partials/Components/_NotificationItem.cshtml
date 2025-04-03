@@ -1,11 +1,12 @@
-﻿@model NotificationItemForm
+﻿
+@model Notification
 
 <div class="notification-item-container">
-    <img src="@Model.ImageUrl" alt="Notification Image" />
+    <img src="@Model.Image" alt="Notification Image" />
 
     <div class="notification-item-body" >
-        <p>Project Name</p>
-        <p>CreatedAt</p>
+        <p>@Model.Message</p>
+        <p>@Model.CreateDate</p>
     </div>
 
     <button class="btn btn-close"></button>

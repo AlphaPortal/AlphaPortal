@@ -61,4 +61,15 @@ public class UserService(IUserRepository userRepository, UserManager<AppUser> us
 
         return new UserResult { Succeeded = false };
     }
+
+    public async Task<string> GetDisplayNameAsync(string userId)
+    {
+        if (!string.IsNullOrEmpty(userId))
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            return user == null ? "" : $"{user.Profile!.FirstName} {user.Profile.LastName}";
+        }
+
+        return "";
+    }
 }

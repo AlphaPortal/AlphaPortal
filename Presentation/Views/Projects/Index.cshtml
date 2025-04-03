@@ -1,16 +1,25 @@
 ﻿@model List<Project>
 
+@{
+    ViewData["Title"] = "Projects";
+}
+
 <div class="projects-container">
-    @if (Model != null && Model.Any())
-    {
-        foreach (var project in Model)
+    <h1>@ViewData["Title"]</h1>
+    @await Html.PartialAsync("Partials/Components/_SortBar") 
+
+    <div class="projects">
+        @if (Model != null && Model.Any())
         {
-            @await Html.PartialAsync("Partials/Components/_ProjectCard", project)
+            foreach (var project in Model)
+            {
+                @await Html.PartialAsync("Partials/Components/_ProjectCard", project)
+            }
         }
-    }
-    else
-    {
-        <h1>No Projects</h1>
-    }
+        else
+        {
+            <h1>No Projects</h1>
+        }
+    </div>
 
 </div>

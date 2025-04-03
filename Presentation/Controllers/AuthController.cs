@@ -4,15 +4,18 @@ using Business.Interfaces;
 using Business.Models;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
+using System.Diagnostics;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Presentation.Controllers
 {
-    public class AuthController(IAuthService authService, INotificationService notificationService) : Controller
+    public class AuthController(IAuthService authService, INotificationService notificationService, IUserService userService) : Controller
     {
 
         private readonly IAuthService _authService = authService;
         private readonly INotificationService _notificationService = notificationService;
+        private readonly IUserService _userService = userService;
 
         [Route("auth/login")]
         public IActionResult SignIn(string returnUrl = "~/")
@@ -31,14 +34,16 @@ namespace Presentation.Controllers
                 var result = await _authService.SignInAsync(model.Email, model.Password, model.RememberMe);
                 if (result)
                 {
+                    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    var userResult = await _userService.GetUserByIdAsync(userId!);
+                    var user = userResult.Result;
                     var notificationFormData = new NotificationItemForm
                     {
                         NotificationTargetId = 1,
                         NotificationTypeId = 1,
-                        Message = "Björn Åhström",
-                        Image = ""
+                        Message = $"Björn Åhström",
+                        Image = "user.Image",
                     };
-
                     await _notificationService.AddNotificationAsync(notificationFormData);
 
                     return LocalRedirect(returnUrl);

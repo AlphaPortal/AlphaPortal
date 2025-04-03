@@ -8,7 +8,7 @@ namespace Business.Interfaces
     {
         Task<UserResult> AddUserToRoleAsync(AppUser user, string roleName);
         Task<string> GetDisplayNameAsync(string userId);
-        Task<UserResult<User>> GetUserById(string id);
+        Task<UserResult<User>> GetUserByIdAsync(string id);
         Task<UserResult<IEnumerable<User>>> GetUsersAsync();
         Task<UserResult> UserExistsByEmailAsync(string email);
     }

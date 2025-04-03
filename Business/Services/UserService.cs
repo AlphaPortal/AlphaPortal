@@ -8,11 +8,11 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Business.Services;
 
-public class UserService(IUserRepository userRepository, UserManager<AppUser> userManager, RoleManager<AppUser> roleManager) : IUserService
+public class UserService(IUserRepository userRepository, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager) : IUserService
 {
     private readonly IUserRepository _userRepository = userRepository;
     private readonly UserManager<AppUser> _userManager = userManager;
-    private readonly RoleManager<AppUser> _roleManager = roleManager;
+    private readonly RoleManager<IdentityRole> _roleManager = roleManager;
 
     public async Task<UserResult<IEnumerable<User>>> GetUsersAsync()
     {
@@ -27,9 +27,9 @@ public class UserService(IUserRepository userRepository, UserManager<AppUser> us
         return new UserResult<IEnumerable<User>> { Succeeded = false, StatusCode = 400, Error = repositoryResult.Error };
     }
 
-    public async Task<UserResult<User>> GetUserById(string id)
+    public async Task<UserResult<User>> GetUserByIdAsync(string id)
     {
-        var repositoryResult = await _userRepository.GetAsync(x => x.Id == id);
+        var repositoryResult = await _userRepository.GetAsync(x => x.Id == id, x => x.Profile!);
         var entity = repositoryResult.Result;
         if (entity != null)
         {

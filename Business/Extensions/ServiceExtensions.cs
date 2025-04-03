@@ -10,6 +10,7 @@ public static class ServiceExtensions
     public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<INotificationService, NotificationService>();
+        services.AddScoped<IUserService, UserService>();
 
         return services;
     }

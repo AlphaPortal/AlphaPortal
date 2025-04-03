@@ -38,4 +38,15 @@ public class UserService(IUserRepository userRepository, UserManager<AppUser> us
 
         return new UserResult<User> { Succeeded = false, StatusCode = 404, Error = $"User with id '{id}' was not found." };
     }
+
+    public async Task<UserResult> UserExistsByEmailAsync(string email)
+    {
+        var exists = await _userRepository.ExistsAsync(x => x.Email == email);
+        if (exists.Succeeded)
+        {
+            return new UserResult { Succeeded = true, StatusCode = 200, Error = "A user with the specified email address already exists." };
+        }
+
+        return new UserResult { Succeeded = false, StatusCode = 404, Error = $"User was not found." };
+    }
 }

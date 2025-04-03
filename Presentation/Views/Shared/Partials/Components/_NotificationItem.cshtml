@@ -1,13 +1,10 @@
-﻿
-@model Notification
+﻿@model Notification
 
-<div class="notification-item-container">
-    <img src="@Model.Image" alt="Notification Image" />
-
-    <div class="notification-item-body" >
-        <p>@Model.Message</p>
-        <p>@Model.CreateDate</p>
+<div class="notifications">
+    <div class="notification-item-container" data-id="@Model.Id">
+        <img class="image" src="@Model.Image" />
+        <div class="message">@Model.Message</div>
+        <div class="time" data.created="@Model.CreateDate.ToString("s")">@Model.CreateDate</div>
+        <button class="btn btn-close" onclick="dismissNotification('@Model.Id')"></button>
     </div>
-
-    <button class="btn btn-close"></button>
 </div>

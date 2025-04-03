@@ -26,13 +26,18 @@ function initMobileMenu() {
 }
 
 function initModals() {
+    console.log([...document.querySelectorAll("div[id]")].map(e => e.id));
+
     const buttons = document.querySelectorAll('[data-type="modal"]')
     buttons.forEach(button => {
         button.addEventListener('click', () => {
             const target = button.getAttribute('data-target')
             const targetElement = document.querySelector(target)
-            console.log('d')
-            targetElement.classList.add('show')
+            console.log("TARGET: ", targetElement)
+            if (targetElement) {
+                
+                targetElement.classList.add('show')
+            }
         })
     })
 }
@@ -44,7 +49,9 @@ function initCloseButtons() {
             const target = button.getAttribute('data-target')
             const targetElement = document.querySelector(target)
 
-            targetElement.classList.remove('show')
+            if (targetElement) {
+                targetElement.classList.remove('show')
+            }
         })
     })
 }

@@ -7,7 +7,7 @@
 <div class="projects-container">
     <div class="projects-header">
         <h1>@ViewData["Title"]</h1>
-        <button class="btn btn-add">Add Project</button>
+        <button type="button" data-type="modal" data-target="#addProjectModal" class="btn btn-add">Add Project</button>
     </div>
     @await Html.PartialAsync("Partials/Components/_SortBar") 
 
@@ -26,3 +26,5 @@
     </div>
 
 </div>
+
+@await Html.PartialAsync("Partials/Modals/_AddProjectModal")

@@ -993,14 +993,74 @@ form {
         display: flex;
     }
 
-#addClientModal .card {
-    width: 550px;
+
+    /* ============================= */
+    /*       Project Modal           */
+    /* ============================= */
+    #addClientModal .card {
+        width: 550px;
+    }
+
+#addProjectModal {
+    z-index: 1000;
+}
+
+    #addProjectModal .btn-close:hover {
+        background-color: transparent;
+    }
+
+    #addProjectModal .image-preview-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+.image-border {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed var(--border-color);
+    border-radius: 20px;
+}
+
+.circle-image {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--gray-800);
+    border-radius: 50%;
+}
+
+.circle-image .bi-camera-fill {
+    color: var(--gray-600);
+}
+
+#addProjectModal .card {
+    max-width: 450px;
+}
+
+#addProjectModal .card-body {
+    margin: 0;
+}
+
+.date-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.date-group .date-label {
+    display: flex;
+    flex-direction: column;
 }
 
 /* ============================= */
 /*          Topmeny              */
 /* ============================= */
-
 .top-menu {
     display: flex;
     align-items: center;

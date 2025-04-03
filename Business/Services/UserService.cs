@@ -1,4 +1,5 @@
 ﻿using Authentication.Models;
+using Business.Interfaces;
 using Data.Interfaces;
 using Domain.Extensions;
 using Domain.Models;
@@ -7,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Business.Services;
 
-public class UserService(IUserRepository userRepository, UserManager<AppUser> userManager, RoleManager<AppUser> roleManager)
+public class UserService(IUserRepository userRepository, UserManager<AppUser> userManager, RoleManager<AppUser> roleManager) : IUserService
 {
     private readonly IUserRepository _userRepository = userRepository;
     private readonly UserManager<AppUser> _userManager = userManager;

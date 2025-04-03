@@ -1,4 +1,5 @@
-﻿using Business.Models;
+﻿using Business.Interfaces;
+using Business.Models;
 using Data.Entities;
 using Data.Interfaces;
 using Domain.Extensions;
@@ -10,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Business.Services;
 
-public class NotificationService(INotificationRepository notificationRepository, INotificationTypeRepository notificationTypeRepository, INotificationTargerRepository notificationTargerRepository, IUserDisMissNotificationRepository userDisMissNotificationRepository, IHubContext<NotificationHub> notificationHub)
+public class NotificationService(INotificationRepository notificationRepository, INotificationTypeRepository notificationTypeRepository, INotificationTargerRepository notificationTargerRepository, IUserDisMissNotificationRepository userDisMissNotificationRepository, IHubContext<NotificationHub> notificationHub) : INotificationService
 {
     private readonly INotificationRepository _notificationRepository = notificationRepository;
     private readonly INotificationTypeRepository _notificationTypeRepository = notificationTypeRepository;
@@ -67,12 +68,12 @@ public class NotificationService(INotificationRepository notificationRepository,
             : await _notificationRepository.GetAllAsync(orderByDescending: true, sortByColumn: x => x.CreateDate,
                 filterBy: x => !dismissedNotificationIds!.Contains(x.Id) && x.NotificationTarget.TargetName != adminTargetName, take: take);
 
-        if(!notificationResult.Succeeded)
+        if (!notificationResult.Succeeded)
         {
             return new NotificationResult<IEnumerable<Notification>> { Succeeded = false, StatusCode = 404, Error = notificationResult.Error };
         }
 
-        if(notificationResult.Result != null)
+        if (notificationResult.Result != null)
         {
             var notifications = notificationResult.Result.Select(entity => entity.MapTo<Notification>());
             return new NotificationResult<IEnumerable<Notification>> { Succeeded = true, StatusCode = 200, Result = notifications };
@@ -81,9 +82,9 @@ public class NotificationService(INotificationRepository notificationRepository,
         return new NotificationResult<IEnumerable<Notification>> { Succeeded = false, StatusCode = 400, Error = notificationResult.Error };
     }
 
-  public async Task DismissNotificationAsync(string notificationId, string userId)
+    public async Task DismissNotificationAsync(string notificationId, string userId)
     {
-        var exists = await _userDisMissNotificationRepository.ExistsAsync(x => x.NotificationId == notificationId &&  x.UserId == userId);
+        var exists = await _userDisMissNotificationRepository.ExistsAsync(x => x.NotificationId == notificationId && x.UserId == userId);
         if (!exists.Succeeded)
         {
             var entity = new UserDismissNotificationEntity
@@ -91,9 +92,11 @@ public class NotificationService(INotificationRepository notificationRepository,
                 NotificationId = notificationId,
                 UserId = userId,
             };
+
+            await _userDisMissNotificationRepository.AddAsync(entity);
         }
 
-        await _userDisMissNotificationRepository.AddAsync(entity);
+        
         await _notificationHub.Clients.User(userId).SendAsync("NotificationDisMissed", notificationId);
     }
 }

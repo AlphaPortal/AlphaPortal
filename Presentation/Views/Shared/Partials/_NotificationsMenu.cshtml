@@ -1,32 +1,42 @@
-﻿@model List<NotificationItemForm>
+﻿
+@{
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "";
+    var roleName = User.FindFirstValue(ClaimTypes.Role) ?? "";
+    var notificationResult = await notificationService.GetNotificationASync(userId, roleName);
+    var notifications = notificationResult.Result;
+}
 
 <div class="notifications-menu-container">
     <div id="notificationsIcon" class="notifications-icon">
 
-        <div class="notifications-symbol">
-            <div class="outer-circle">
-                <div class="inner-red-circle"></div>
+        @if (notifications!.Any())
+        {
+            <div class="notifications-symbol">
+                <div class="outer-circle">
+                    <div class="inner-red-circle"></div>
+                </div>
             </div>
-        </div>
+        }
+
         <i class="bi bi-bell-fill"></i>
+        </div>
     </div>
-</div>
 
 <div id="notificationsDropdown" class="notifications-dropdown-container">
 
     <header class="menu-header">
         <h1 class="h3">Notifications</h1>
         <div class="notifications-red-circle">
-            <p>@Model.Count()</p>
+            <span>@notifications!.Count()</span>
         </div>
     </header>
 
 
-    @if (Model != null && Model.Any())
+     @if (notifications != null)
     {
-        @foreach(var item in Model)
+        @foreach (var notification in notifications)
         {
-            @await Html.PartialAsync("Partials/Components/_NotificationItem", item)
+            @await Html.PartialAsync("Partials/Components/_NotificationItem", notification)
         }
-    }
+    } 
 </div>

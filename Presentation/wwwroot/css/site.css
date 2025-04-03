@@ -774,31 +774,101 @@ form {
     margin-top: 2rem;
 }
 
-/* Project Card */
+/* ============================= */
+/*  Project  & Project card      */
+/* ============================= */
+
+.projects-container {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    max-height: 80vh; /* Limits the heigt so there is room for other elements */
+    padding-right: 5px; /* Prevent that the scroll bar overlap */
+}
 
 #projectCard {
+    margin: 0.5rem;
+    bottom: 0.5rem;
     width: 350px;
 }
 
     #projectCard .project-card-header {
-        border: 1px solid red;
-        margin: 0;
-        padding: 0;
         display: grid;
         grid-template-columns: auto 1fr auto;
+        grid-template-areas: "img title btn" "img desc btn"
     }
 
-#projectCard .card-label {
-   
-}
+    #projectCard .project-image {
+        grid-area: img;
+        width: 56px;
+        height: 56px;
+    }
 
-/* ============================= */
-/*           Sign In            */
-/* ============================= */
-#signin {
-    width: 600px;
-    text-align: center;
-}
+    #projectCard .project-title {
+        grid-area: title;
+        margin-left: 1rem;
+    }
+
+    #projectCard .project-menu-btn {
+        grid-area: btn;
+        width: 24px;
+        height: 24px;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+    }
+
+    #projectCard .project-description {
+        grid-area: desc;
+        margin-left: 1rem;
+    }
+
+    #projectCard .card-body {
+        padding: 0;
+        margin: 0;
+        margin-bottom: 4rem;
+        width: 100%;
+    }
+
+    #projectCard .card-footer {
+        margin: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #projectCard .card-footer > img {
+        padding: 0;
+        margin: 0;
+        height: 30px;
+        width: 30px;
+    }
+
+    #projectCard .card-footer .time-left {
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        background-color: var(--white-200);
+        display: flex;
+        align-items: center;
+    }
+
+    #projectCard .card-footer .time-left .bi-clock-fill {
+        font-size: 20px;
+        margin-right: 0.3rem;
+        color: var(--gray-700);
+    }
+
+
+    /* ============================= */
+    /*           Sign In            */
+    /* ============================= */
+    #signin {
+        width: 600px;
+        text-align: center;
+    }
 
 #signin .card-header {
     justify-content: center;

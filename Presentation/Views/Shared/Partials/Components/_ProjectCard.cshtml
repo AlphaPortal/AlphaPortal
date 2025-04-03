@@ -2,21 +2,26 @@
 
 <div id="projectCard" class="card">
     <div class="project-card-header">
-        <img src="~/Images/CardImages/card-image1.svg" alt="Card Image"/>
+        <img class="project-image" src="~/Images/CardImages/card-image1.svg" alt="Card Image" />
 
-        <div class="card-label">
-            <p>@Model.Title</p>
-            <p>@Model.CompanyName</p>
-        </div>
+        <span class="project-title">@Model.Title</span>
+        <span class="project-description">@Model.Description</span>
 
-        <button>
+        <button class="project-menu-btn">
             <img src="~/Images/ButtonImages/two_dots.svg" alt="Card Menu Button Image" />
         </button>
     </div>
     <main class="card-body">
-        <p>@Model.Description</p>
+        <p>@Model.Message</p>
     </main>
     <footer class="card-footer">
-        <p>@Model.TimeLeft</p>
+        <span class="time-left">
+            <i class="bi bi-clock-fill"></i>
+            @Model.TimeLeft
+            </span>
+
+        <img class="project-card-profile-image" src="~/Images/Avatars/avatar.svg" />
+        <img class="project-card-profile-image" src="~/Images/Avatars/avatar.svg" />
+        <img class="project-card-profile-image" src="~/Images/Avatars/avatar.svg" />
     </footer>
 </div>

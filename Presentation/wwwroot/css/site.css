@@ -925,6 +925,11 @@ form {
 /*          Topmeny              */
 /* ============================= */
 
+.top-menu {
+    display: flex;
+    align-items: center;
+}
+
 .top-menu-divider{
     height: 31px;
     border: 1px solid var(--border-color);

@@ -1091,6 +1091,22 @@ form {
     gap: 2px;
 }
 
+.budget-group {
+    margin: 1rem 0;
+}
+
+.budget-group .budget-input {
+    padding: 0 0.5rem;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+}
+
+.budget-group .budget-input > input {
+    border: none;
+}
+
 .add-project-members-group > button {
     border: none;
     background-color: transparent;

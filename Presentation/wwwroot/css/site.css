@@ -1017,8 +1017,8 @@ form {
     }
 
 .image-border {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1048,6 +1048,20 @@ form {
     margin: 0;
 }
 
+#addProjectModal .card-body .btn-submit {
+    margin: 0;
+    width: 100%;
+}
+
+#addProjectModal .card-body .form-group {
+    margin-top: 1rem;
+}
+
+#addProjectModal .card-body .form-group > textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
 .date-group {
     display: flex;
     justify-content: space-between;
@@ -1058,8 +1072,60 @@ form {
     flex-direction: column;
 }
 
+.add-project-members-container {
+    margin-top: 1rem;
+}
+
+.add-project-members-group {
+    padding: 0.3rem;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.add-project-members {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.add-project-members-group > button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.add-project-members-group > button .bi-search {
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+.add-project-member {
+    padding: 0.3rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--gray-100);
+    border-radius: 8px;
+}
+
+.add-project-member > img {
+    width: 22px;
+    height: 22px;
+}
+
+.add-project-member .btn-close {
+    font-size: 12px;
+}
+
+.add-project-member .btn-close:hover {
+    background-color: transparent;
+}
+
 /* ============================= */
-/*          Topmeny              */
+/*          Top Menu             */
 /* ============================= */
 .top-menu {
     display: flex;

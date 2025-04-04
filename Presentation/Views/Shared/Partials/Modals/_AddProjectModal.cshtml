@@ -37,7 +37,7 @@
                         <label>Description</label>
                         <span></span>
                     </div>
-                    <textarea placeholder="Description"></textarea>
+                    <textarea rows="4" placeholder="Description"></textarea>
                 </div>
 
                 <div class="date-group">
@@ -50,6 +50,39 @@
                         <input type="date" />
                     </div>
                 </div>
+
+                <div class="add-project-members-container">
+                   <label>Members</label>
+                   <div class="add-project-members-group">
+
+                        <div class="add-project-members">
+
+                            <div class="add-project-member">
+                                <img src="~/Images/Avatars/avatar.svg" />
+                                <span>Björn Åhström</span>
+                                <button class="btn btn-close"></button>
+                            </div>
+
+                            <div class="add-project-member">
+                                <img src="~/Images/Avatars/avatar_5.svg" />
+                                <span>Desieé Åhström</span>
+                                <button class="btn btn-close"></button>
+                            </div>
+
+                        </div>
+
+                        <button>
+                            <i class="bi bi-search"></i>
+                        </button>
+                   </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Budget</label>
+                    <input placeholder="0"/>
+                </div>
+
+                <button type="submit" class="btn btn-submit">Create</button>
 
             </form>
         </div>

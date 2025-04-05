@@ -8,6 +8,9 @@ public static class UserFactory
 {
     public static User Create(AppUser appUser)
     {
+        if (appUser == null)
+            return new User();
+
         var user = new User
         {
             Email = appUser.Email ?? "",
@@ -28,7 +31,7 @@ public static class UserFactory
     // Took help from ChatGpt
     public static IEnumerable<User> Create(IEnumerable<AppUser> appUsers)
     {
-        var users = appUsers.Where(u => u.Profile != null).Select(Create).ToList();
+        var users = appUsers.Where(u => u.Profile != null).Select(Create).ToList() ?? [];
         return users;
     }
 }

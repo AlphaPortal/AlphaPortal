@@ -20,14 +20,14 @@ public class UserService(UserManager<AppUser> userManager, RoleManager<IdentityR
 
     public async Task<UserResult<IEnumerable<User>>> GetUsersAsync()
     {
-        var appUser = await _context.Users
+        var entities = await _context.Users
             .Include(u => u.Profile)
             .Include(u => u.Address)
             .ToListAsync();
 
-        var users = appUser.Select(x => x.MapTo<User>()) ?? [];
+        var users = UserFactory.Create(entities);
 
-        return new UserResult<IEnumerable<User>> { Succeeded = true, StatusCode = 200, Result = users };
+        return new UserResult<IEnumerable<User>> { Succeeded = true, StatusCode = 200, Result = users};
     }
 
     public async Task<UserResult<User>> GetUserByIdAsync(string id)

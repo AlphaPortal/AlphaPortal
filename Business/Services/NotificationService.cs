@@ -32,14 +32,29 @@ public class NotificationService(INotificationRepository notificationRepository,
             {
                 // User
                 case 1:
-                    form.Image = "Images/Profiles/avatar.svg";
+                    form.Image = "/Images/Profiles/avatar.svg";
                     break;
                 // Project
                 case 2:
-                    form.Image = "Images/Projects/project-image.svg";
+                    form.Image = "/Images/Projects/project-image.svg";
                     break;
             }
+
         }
+
+        switch (form.NotificationTypeId)
+            {
+                // User
+                case 1:
+                    form.Image = $"/Images/Profiles/{form.Image}";
+                    break;
+                // Project
+                case 2:
+                    form.Image = $"/Images/Projects/{form.Image}";
+                    break;
+            }
+
+        
 
         var notificationEntity = form.MapTo<NotificationEntity>();
         var result = await _notificationRepository.AddAsync(notificationEntity);
@@ -73,7 +88,7 @@ public class NotificationService(INotificationRepository notificationRepository,
             return new NotificationResult<IEnumerable<Notification>> { Succeeded = false, StatusCode = 404, Error = notificationResult.Error };
         }
 
-        if (notificationResult.Result != null)
+        if (notificationResult.Succeeded && notificationResult.Result != null)
         {
             var notifications = notificationResult.Result.Select(entity => entity.MapTo<Notification>());
             return new NotificationResult<IEnumerable<Notification>> { Succeeded = true, StatusCode = 200, Result = notifications };

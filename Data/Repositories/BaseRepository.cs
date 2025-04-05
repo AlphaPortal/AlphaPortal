@@ -56,7 +56,7 @@ public abstract class BaseRepository<TEntity>(DataContext context) : IBaseReposi
 
         if (take > 0)
         {
-            query.Take(take);
+            query = query.Take(take);
         }
 
         var entities = await query.ToListAsync();

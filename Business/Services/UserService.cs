@@ -1,39 +1,45 @@
-﻿using Authentication.Models;
+﻿using Authentication.Contexts;
+using Authentication.Factories;
+using Authentication.Models;
 using Business.Interfaces;
 using Data.Interfaces;
 using Domain.Extensions;
 using Domain.Models;
 using Domain.Responses;
+using Microsoft.AspNetCore.Http.Features.Authentication;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Services;
 
-public class UserService(IUserRepository userRepository, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager) : IUserService
+public class UserService(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, AuthenticationContext context) : IUserService
 {
-    private readonly IUserRepository _userRepository = userRepository;
+    private readonly AuthenticationContext _context = context;
     private readonly UserManager<AppUser> _userManager = userManager;
     private readonly RoleManager<IdentityRole> _roleManager = roleManager;
 
     public async Task<UserResult<IEnumerable<User>>> GetUsersAsync()
     {
-        var repositoryResult = await _userRepository.GetAllAsync(orderByDescending: false, sortByColumn: x => x.Profile!.FirstName!);
-        var entities = repositoryResult.Result;
-        if (entities != null)
-        {
-            var users = entities.Select(x => x.MapTo<User>()) ?? [];
-            return new UserResult<IEnumerable<User>> { Succeeded = true, StatusCode = 200, Result = users };
-        }
+        var appUser = await _context.Users
+            .Include(u => u.Profile)
+            .Include(u => u.Address)
+            .ToListAsync();
 
-        return new UserResult<IEnumerable<User>> { Succeeded = false, StatusCode = 400, Error = repositoryResult.Error };
+        var users = appUser.Select(x => x.MapTo<User>()) ?? [];
+
+        return new UserResult<IEnumerable<User>> { Succeeded = true, StatusCode = 200, Result = users };
     }
 
     public async Task<UserResult<User>> GetUserByIdAsync(string id)
     {
-        var repositoryResult = await _userRepository.GetAsync(x => x.Id == id, x => x.Profile!);
-        var entity = repositoryResult.Result;
+        var entity = await _context.Users
+            .Include(u => u.Profile)
+            .Include(u => u.Address)
+            .FirstOrDefaultAsync(x => x.Id == id);
+
         if (entity != null)
         {
-            var user = entity.MapTo<User>();
+            var user = UserFactory.Create(entity);
             return new UserResult<User> { Succeeded = true, StatusCode = 200, Result = user };
         }
 
@@ -42,8 +48,17 @@ public class UserService(IUserRepository userRepository, UserManager<AppUser> us
 
     public async Task<UserResult> UserExistsByEmailAsync(string email)
     {
-        var exists = await _userRepository.ExistsAsync(x => x.Email == email);
-        if (exists.Succeeded)
+        if (string.IsNullOrEmpty(email)) 
+        {
+            return new UserResult { Succeeded = false, StatusCode = 400, Error = $"Email must be provided." };
+        }
+
+        var entity = await _context.Users
+            .Include(u => u.Profile)
+            .Include(u => u.Address)
+            .FirstOrDefaultAsync(u => u.Email == email);
+
+        if (entity != null)
         {
             return new UserResult { Succeeded = true, StatusCode = 200, Error = "A user with the specified email address already exists." };
         }

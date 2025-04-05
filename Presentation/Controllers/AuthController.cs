@@ -41,7 +41,7 @@ namespace Presentation.Controllers
                     {
                         NotificationTargetId = 1,
                         NotificationTypeId = 1,
-                        Message = $"Björn Åhström",
+                        Message = $"{user!.FirstName} {user.LastName}",
                         Image = "user.Image",
                     };
                     await _notificationService.AddNotificationAsync(notificationFormData);

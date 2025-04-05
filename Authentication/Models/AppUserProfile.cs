@@ -7,6 +7,7 @@ public class AppUserProfile
 {
     [Key, ForeignKey(nameof(User))]
     public string UserId { get; set; } = null!;
+    public string? ImageUrl {  get; set; }
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
     public string? JobTitle { get; set; }

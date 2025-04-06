@@ -1,6 +1,7 @@
 ﻿using Business.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.Models;
 
 namespace Presentation.Controllers;
 
@@ -22,6 +23,23 @@ public class ProjectsController : Controller
                 new() {Id = 7, Title = "Parser Development", Description = "Driveway, Inc..", Message = "It is necessary to develop a ticket site parser in python.", TimeLeft = "5 days left"},
                 new() {Id = 8, Title = "App Development", Description = "Slack Technologies, Inc.", Message = "Create a mobile application on iOS and Android devices.", TimeLeft = "5 days left"},
             };
-        return View(projects);
+
+        var pvm = new ProjectsViewModel
+        {
+            Projects = projects
+        };
+            
+        return View(pvm);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> AddProject()
+    {
+        var viewModel = new AddProjectViewModel
+        {
+
+        };
+
+        return PartialView("~/Views(Shared/Modals(_AddProjectModal", viewModel);
     }
 }

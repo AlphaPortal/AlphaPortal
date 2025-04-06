@@ -1,20 +1,22 @@
-﻿@model List<Project>
+﻿@model ProjectsViewModel
 
 @{
     ViewData["Title"] = "Projects";
 }
+
+<partial name="Partials/Modals/_AddProjectModal" model="Model.AddProjectViewModel" />
 
 <div class="projects-container">
     <div class="projects-header">
         <h1>@ViewData["Title"]</h1>
         <button type="button" data-type="modal" data-target="#addProjectModal" class="btn btn-add">Add Project</button>
     </div>
-    @await Html.PartialAsync("Partials/Components/_SortBar") 
+    @await Html.PartialAsync("Partials/Components/_SortBar")
 
     <div class="projects">
-        @if (Model != null && Model.Any())
+        @if (Model != null && Model.Projects.Any())
         {
-            foreach (var project in Model)
+            foreach (var project in Model.Projects)
             {
                 @await Html.PartialAsync("Partials/Components/_ProjectCard", project)
             }
@@ -26,5 +28,3 @@
     </div>
 
 </div>
-
-@await Html.PartialAsync("Partials/Modals/_AddProjectModal")

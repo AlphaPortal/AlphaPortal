@@ -1,4 +1,6 @@
-﻿<div id="addProjectModal" class="modal">
+﻿@model AddProjectViewModel
+
+<div id="addProjectModal" class="modal">
     <div class="card">
         <div class="card-header">
             <h3>Add Project</h3>
@@ -6,7 +8,7 @@
         </div>
 
         <div class="card-body">
-            <form>
+            <form asp-controller="Project" asp-action="AddProject" method="post" enctype="multipart/form-data" data-target="#addProjectModal">
 
                 <div class="image-preview-container">
                     <div class="image-border">
@@ -17,37 +19,51 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="field-group">
-                        <label>Project Name</label>
-                        <span></span>
-                    </div>
-                    <input />
+                     <label asp-for="ProjectName"></label>
+                     <input asp-for="ProjectName" />
+                    
                 </div>
 
                 <div class="form-group">
-                    <div class="field-group">
-                        <label>Client Name</label>
-                        <span></span>
-                    </div>
-                    <input />
+                    <label>Client Name</label>
+                    <select asp-for="ClientId" asp-items="Model.CLients"></select>
                 </div>
 
                 <div class="form-group">
-                    <div class="field-group">
-                        <label>Description</label>
-                        <span></span>
+                    <label asp-for="Description"></label>
+                        <div class="wysiwyg-container">
+                        <textarea id="add-project-description" asp-for="Description"></textarea>
+                        <div id="add-project-description-editor" class="wysiwyg-editor"></div>
+                        <div id="add-project-description-toolbar" class="wysiwyg-toolbar">
+                            <span class="ql-formats">
+                                <button class="ql-bold"></button>
+                                <button class="ql-italic"></button>
+                                <button class="ql-underline"></button>
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-align" value=""></button>
+                                <button class="ql-align" value="center"></button>
+                                <button class="ql-align" value="right"></button>
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-list" value="bullet"></button>
+                                <button class="ql-list" value="ordered"></button>
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-link"></button>
+                            </span>
+                        </div>
                     </div>
-                    <textarea rows="4" placeholder="Description"></textarea>
                 </div>
 
                 <div class="date-group">
                     <div class="date-label">
-                        <label>Start Date</label>
-                        <input type="date" />
+                        <label asp-for="StartDate"></label>
+                        <input asp-for="StartDate"/>
                     </div>
                     <div class="date-label">
-                        <label>End Date</label>
-                        <input type="date" />
+                        <label asp-for="EndDate"></label>
+                        <input asp-for="EndDate"/>
                     </div>
                 </div>
 
@@ -91,3 +107,8 @@
         </div>
     </div>
 </div>
+
+<script>
+    initWysiwygEditor("#add-project-description-editor", "#add-project-description-toolbar", "#add-project-description", "@Html.Raw(Model?.Description ?? "")");
+
+</script>

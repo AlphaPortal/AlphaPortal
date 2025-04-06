@@ -82,8 +82,12 @@ public class UserService(UserManager<AppUser> userManager, RoleManager<IdentityR
     {
         if (!string.IsNullOrEmpty(userId))
         {
-            var user = await _userManager.FindByIdAsync(userId);
-            return user == null ? "" : $"{user.Profile!.FirstName} {user.Profile.LastName}";
+            var user = await _context.Users
+                .Include(u => u.Profile)
+                .FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (user != null)
+                return user == null ? "" : $"{user.Profile?.FirstName} {user.Profile?.LastName}";
         }
 
         return "";

@@ -32,11 +32,11 @@ public class NotificationService(INotificationRepository notificationRepository,
             {
                 // User
                 case 1:
-                    form.Image = "/Images/Profiles/avatar.svg";
+                    form.Image = "avatar.svg";
                     break;
                 // Project
                 case 2:
-                    form.Image = "/Images/Projects/project-image.svg";
+                    form.Image = "project-image.svg";
                     break;
             }
 

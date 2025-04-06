@@ -1,11 +1,34 @@
-﻿<div class="profile-menu-container">
-    <img id="profileAvatar" class="profile-avatar" src="~/Images/Avatars/avatar.svg" />
+﻿@{
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "";
+    var roleName = User.FindFirstValue(ClaimTypes.Role) ?? "";
+    var displayName = await userService.GetDisplayNameAsync(userId);
+    var profileResult = await userService.GetUserByIdAsync(userId);
+    var profile = profileResult.Result;
+}
+
+<div class="profile-menu-container">
+    @if (!string.IsNullOrEmpty(profile!.Image))
+    {
+        <img id="profileAvatar" class="profile-avatar" src="@profile?.Image" alt="@displayName"/>
+    }
+    else
+    {
+        <img id="profileAvatar" class="profile-avatar" src="~/Images/Avatars/avatar.svg" alt="Avatar Image" />
+    }
+
 </div>
 
 <div id="profileDropdown" class="profile-dropdown">
     <div class="profile-info">
-        <img class="profile-avatar-mini" src="~/Images/Avatars/avatar.svg" />
-        <span class="profile-name">Björn Åhström</span>
+        @if (!string.IsNullOrEmpty(profile!.Image))
+        {
+            <img class="profile-avatar-mini" src="@profile?.Image" alt="@displayName" />
+        }
+        else
+        {
+            <img class="profile-avatar-mini" src="~/Images/Avatars/avatar.svg" alt="Avatar Image" />
+        }
+        <span class="profile-name">@displayName</span>
     </div>
 
     <div class="profile-action">

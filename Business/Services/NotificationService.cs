@@ -109,9 +109,7 @@ public class NotificationService(INotificationRepository notificationRepository,
             };
 
             await _userDisMissNotificationRepository.AddAsync(entity);
+            await _notificationHub.Clients.User(userId).SendAsync("NotificationDismissed", notificationId);
         }
-
-        
-        await _notificationHub.Clients.User(userId).SendAsync("NotificationDisMissed", notificationId);
     }
 }

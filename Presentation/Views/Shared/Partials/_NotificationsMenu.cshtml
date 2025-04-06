@@ -77,27 +77,28 @@
             }
         }
 
-    function updateNotificationCount() {
+        function updateNotificationCount() {
         const notifications = document.querySelector('.notifications');
         const notificationNumber = document.querySelector('.notification-number');
-        const notificationDropdownButton = document.getElementById('notifications-icon');
+        const notificationDropdownButton = document.getElementById('notificationsIcon');
         const count = notifications.querySelectorAll('.notification-item-container').length;
 
         if (notificationNumber) {
             notificationNumber.textContent = count;
         }
 
-        let dot = notificationDropdownButton.querySelector('notifications-symbol');
+        let dot = notificationDropdownButton.querySelector('.notifications-symbol');
         if (count > 0 && !dot) {
-            dot = document.createElement('.div');
+            dot = document.createElement('div');
             dot.className = 'notifications-symbol';
-            notificationButton.appendChild(dot);
+            notificationDropdownButton.appendChild(dot);
         }
 
         if (count === 0 && dot) {
             dot.remove();
         }
     }
+
 
      const connection = new signalR.HubConnectionBuilder()
         .withUrl("/notificationHub")
@@ -107,7 +108,7 @@
             const notifications = document.querySelector('.notifications')
 
             const item = document.createElement('div')
-            item.className = "notification-item"
+            item.className = "notification-item-container"
             item.setAttribute('data-id', notification.id)
             item.innerHTML =
             `

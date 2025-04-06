@@ -26,8 +26,6 @@ function initMobileMenu() {
 }
 
 function initModals() {
-    console.log([...document.querySelectorAll("div[id]")].map(e => e.id));
-
     const buttons = document.querySelectorAll('[data-type="modal"]')
     buttons.forEach(button => {
         button.addEventListener('click', () => {

@@ -7,7 +7,6 @@ using Domain.Models;
 using Domain.Responses;
 using Hubs;
 using Microsoft.AspNetCore.SignalR;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Business.Services;
 

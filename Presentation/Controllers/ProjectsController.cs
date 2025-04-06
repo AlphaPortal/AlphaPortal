@@ -1,13 +1,16 @@
-﻿using Business.Models;
+﻿using Business.Interfaces;
+using Business.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Presentation.Models;
 
 namespace Presentation.Controllers;
 
 [Authorize]
-public class ProjectsController : Controller
+public class ProjectsController(IClientService clientService) : Controller
 {
+    private readonly IClientService _clientService = clientService;
 
     [Route("admin/projects")]
     public IActionResult Index()
@@ -37,9 +40,26 @@ public class ProjectsController : Controller
     {
         var viewModel = new AddProjectViewModel
         {
-
+            CLients = await GetClientsSelectListAsync()
         };
 
         return PartialView("~/Views(Shared/Modals(_AddProjectModal", viewModel);
+    }
+
+
+    private async Task<IEnumerable<SelectListItem>> GetClientsSelectListAsync()
+    {
+        var result = await _clientService.GetClientsAsync();
+        if (result.Result != null)
+        {
+            var statusList = result.Result.Select(s => new SelectListItem
+            {
+                Value = s.Id,
+                Text = s.ClientName,
+            });
+            return statusList;
+        }
+
+        return [];
     }
 }

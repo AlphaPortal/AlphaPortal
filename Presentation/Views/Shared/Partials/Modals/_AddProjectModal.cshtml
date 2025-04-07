@@ -1,4 +1,9 @@
-﻿@model AddProjectViewModel
+﻿@using System.Text.Json
+@model AddProjectViewModel
+
+@{
+    var selectedUsersJson = "[]";
+}
 
 <div id="addProjectModal" class="modal">
     <div class="card">
@@ -70,12 +75,18 @@
                 </div>
 
                 <div class="add-project-members-container">
-                   <label>Members</label>
                    <div class="add-project-members-group">
 
                         <div class="add-project-members">
+                            <input type="hidden" asp-for="UserIds" />
 
-                            <div class="add-project-member">
+                            <div id="tagged-users" class="form-input form-tag-select">
+                                <input type="text" id="user-search" class="form-tag-input" placeholder="Add member..." />
+                                <label for="user-search" class="fa-solid fa-ellipsis"></label>
+                                <div id="user-search-results" class="search-results"></div>
+                            </div>
+
+                           @*  <div class="add-project-member">
                                 <img src="~/Images/Avatars/avatar.svg" />
                                 <span>Björn Åhström</span>
                                 <button class="btn btn-close"></button>
@@ -85,7 +96,7 @@
                                 <img src="~/Images/Avatars/avatar_5.svg" />
                                 <span>Desieé Åhström</span>
                                 <button class="btn btn-close"></button>
-                            </div>
+                            </div> *@
 
                         </div>
 
@@ -111,6 +122,21 @@
 </div>
 
 <script>
+    const preSelectedUsers = @Html.Raw(selectedUsersJson);
+
     initWysiwygEditor("#add-project-description-editor", "#add-project-description-toolbar", "#add-project-description", "@Html.Raw(Model?.Description ?? "")");
 
+    initTagSelector({
+        containerId: 'tagged-users',
+        inputId: 'user-search',
+        resultsId: 'user-search-results',
+        searchUrl: (query) => '@Url.Action("SearchUsers", "Members")' + '?term=' + encodeURIComponent(query),
+        displayProperty: 'fullName',
+        imageProperty: 'imageUrl',
+        tagClass: 'user-tag',
+        avatarFolder: '/images/profiles/',
+        emptyMessage: 'No members found.',
+        preSelected: preSelectedUsers,
+        selectedInputIds: 'UserIds'
+    })
 </script>

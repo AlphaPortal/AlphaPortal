@@ -6,6 +6,7 @@ namespace Business.Interfaces
 {
     public interface IUserService
     {
+        Task<UserResult> AddUserAsync(AppUser user, string role);
         Task<UserResult> AddUserToRoleAsync(AppUser user, string roleName);
         Task<string> GetDisplayNameAsync(string userId);
         Task<UserResult<User>> GetUserByIdAsync(string id);

@@ -1,12 +1,14 @@
-﻿<div id="addProjectModal" class="modal">
+﻿
+
+<div id="addMemberModal" class="modal">
     <div class="card">
         <div class="card-header">
-            <h3>Add Project</h3>
-            <button type="button" data-type="close" data-target="#addProjectModal" class="btn btn-close"></button>
+            <h3>Add Member</h3>
+            <button type="button" data-type="close" data-target="#addMemberModal" class="btn btn-close"></button>
         </div>
 
         <div class="card-body">
-            <form asp-controller="Members" asp-action="AddMember" method="post" enctype="multipart/form-data" data-target="#addProjectModal" novalidate>
+            <form asp-controller="Members" asp-action="AddMember" method="post" enctype="multipart/form-data" data-target="#addMemberModal" novalidate>
 
                 <div class="image-preview-container">
                     <div class="image-border">
@@ -17,16 +19,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="ProjectName"></label>
-                    <input asp-for="ProjectName" />
+                    <label>First name</label>
+                    <input  />
 
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="ClientId"></label>
-                    <select asp-for="ClientId" asp-items="Model.CLients">
-                        <option value="" selected hidden disabled>Choose Client</option>
-                    </select>
                 </div>
 
                 

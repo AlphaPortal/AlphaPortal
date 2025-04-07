@@ -1,4 +1,5 @@
 ﻿using Authentication.Contexts;
+using Authentication.Models;
 using Business.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -26,10 +27,14 @@ public class MembersController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddMember(AddMemberViewModel member)
+    public async Task<IActionResult> AddMember(AppUser user, string role)
     {
-        var result = await _userService.
-        return View();
+        var result = await _userService.AddUserAsync(user, role);
+        if (result.Succeeded)
+        {
+            return Ok(result);
+        }
+        return View(user);
     }
 
 

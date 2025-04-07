@@ -6,7 +6,7 @@ namespace Presentation.Controllers;
 [Authorize]
 public class DashboardController : Controller
 {
-    [Route("admin/dashboard")]
+    [Route("admin/[controller]")]
     public IActionResult Index()
     {
         return View();

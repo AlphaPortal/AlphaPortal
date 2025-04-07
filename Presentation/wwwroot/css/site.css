@@ -868,6 +868,100 @@ form {
     }
 
 
+/* ============================= */
+/*  Members  & Member card       */
+/* ============================= */
+
+.members {
+    margin: 0;
+    margin-top: 1rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    max-height: 68vh; /* Limits the heigt so there is room for other elements */
+    padding-right: 5px; /* Prevent that the scroll bar overlap */
+}
+
+.members-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+#memberCard {
+    margin: 0.5rem;
+    bottom: 0.5rem;
+    width: 350px;
+}
+
+    #memberCard .member-card-header {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-template-areas: "img title btn" "img desc btn"
+    }
+
+    #memberCard .member-image {
+        grid-area: img;
+        width: 56px;
+        height: 56px;
+    }
+
+    #memberCard .member-title {
+        grid-area: title;
+        margin-left: 1rem;
+    }
+
+    #memberCard .member-menu-btn {
+        grid-area: btn;
+        width: 24px;
+        height: 24px;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+    }
+
+    #memberCard .member-description {
+        grid-area: desc;
+        margin-left: 1rem;
+    }
+
+    #memberCard .card-body {
+        padding: 0;
+        margin: 0;
+        margin-bottom: 4rem;
+        width: 100%;
+    }
+
+    #memberCard .card-footer {
+        margin: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+        #memberCard .card-footer > img {
+            padding: 0;
+            margin: 0;
+            height: 30px;
+            width: 30px;
+        }
+
+        #memberCard .card-footer .time-left {
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            background-color: var(--white-200);
+            display: flex;
+            align-items: center;
+        }
+
+            #memberCard .card-footer .time-left .bi-clock-fill {
+                font-size: 20px;
+                margin-right: 0.3rem;
+                color: var(--gray-700);
+            }
+
+
     /* ============================= */
     /*           Sign In            */
     /* ============================= */

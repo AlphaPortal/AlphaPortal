@@ -12,7 +12,7 @@ public class ProjectsController(IClientService clientService) : Controller
 {
     private readonly IClientService _clientService = clientService;
 
-    [Route("admin/projects")]
+    [Route("admin/[controller]")]
     public async Task<IActionResult> Index()
     {
         var clients = await GetClientsSelectListAsync();

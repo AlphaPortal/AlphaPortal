@@ -3,6 +3,7 @@ using Authentication.Extensions;
 using Data.Extensions;
 using Business.Extensions;
 using Hubs;
+using Microsoft.AspNetCore.Rewrite;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
@@ -18,7 +19,8 @@ var app = builder.Build();
 app.UseHsts();
 app.UseHttpsRedirection();
 
-app.UseRootRedirect("/admin/dashboard");
+//app.UseRootRedirect("/admin/dashboard");
+app.UseRewriter(new RewriteOptions().AddRedirect("^$", "/admin/dashboard"));
 app.UseRouting();
 
 app.UseAuthentication();

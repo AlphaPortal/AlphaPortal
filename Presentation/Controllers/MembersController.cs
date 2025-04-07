@@ -3,6 +3,7 @@ using Business.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Presentation.Models;
 
 namespace Presentation.Controllers;
 
@@ -23,6 +24,14 @@ public class MembersController : Controller
     {
         return View();
     }
+
+    [HttpPost]
+    public async Task<IActionResult> AddMember(AddMemberViewModel member)
+    {
+        var result = await _userService.
+        return View();
+    }
+
 
     [HttpGet]
     public async Task<JsonResult> SearchUsers(string term)

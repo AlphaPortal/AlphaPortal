@@ -2,11 +2,8 @@
 using Authentication.Factories;
 using Authentication.Models;
 using Business.Interfaces;
-using Data.Interfaces;
-using Domain.Extensions;
 using Domain.Models;
 using Domain.Responses;
-using Microsoft.AspNetCore.Http.Features.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +15,24 @@ public class UserService(UserManager<AppUser> userManager, RoleManager<IdentityR
     private readonly UserManager<AppUser> _userManager = userManager;
     private readonly RoleManager<IdentityRole> _roleManager = roleManager;
 
+    public async Task<UserResult> AddUserAsync(AppUser user, string role)
+    {
+        var password = "BytMig123!";
+        if (user != null)
+        {
+            var result = await _userManager.CreateAsync(user, password);
+            if (result.Succeeded)
+            {
+                if (role != null)
+                {
+                    await _userManager.AddToRoleAsync(user, role);
+                    return new UserResult { Succeeded = true, StatusCode = 200 };
+                }
+            }
+        }
+
+        return new UserResult { Succeeded = false, StatusCode = 400, Error = "Something went wrong." };
+   }
     public async Task<UserResult<IEnumerable<User>>> GetUsersAsync()
     {
         var entities = await _context.Users

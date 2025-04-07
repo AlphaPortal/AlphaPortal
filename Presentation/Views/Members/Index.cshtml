@@ -1,5 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Members";
+
+    var usersResult = await userService.GetUsersAsync();
+    var users = usersResult.Result;
 }
 
 <div class="members-container">
@@ -9,17 +12,17 @@
     </div>
 
     <div class="members">
-        @* @if (Model != null && Model.Projects.Any())
+        @if (users != null)
         {
-            foreach (var project in Model.Projects)
+            foreach (var user in users)
             {
-                @await Html.PartialAsync("Partials/Components/_ProjectCard", project)
+                @await Html.PartialAsync("Partials/Components/_MemberCard", user)
             }
         }
         else
         {
             <h1>No Members</h1>
-        } *@
+        }
     </div>
 
 </div>

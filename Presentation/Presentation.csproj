@@ -21,4 +21,8 @@
     <ProjectReference Include="..\Hubs\Hubs.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\Members\" />
+  </ItemGroup>
+
 </Project>

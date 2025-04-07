@@ -1,0 +1,35 @@
+﻿@model User
+
+<div id="memberCard" class="card member">
+
+    <header class="member-card-header">
+
+        <div class="menu-button">
+            <button class="member-menu-btn">
+                <img src="~/Images/ButtonImages/two_dots.svg" alt="Card Menu Button Image" />
+            </button>
+        </div>
+        <div class="member-image">
+            @if (!string.IsNullOrEmpty(Model.Image))
+            {
+                <img src="~/Images/Profiles/@Model.Image" alt="" />
+            }
+            else
+            {
+                <img src="~/images/avatars/avatar-template.svg" alt="" />
+            }
+        </div>
+    </header>
+    <main class="member-card-body">
+        <h4 class="name">@Model.FirstName @Model.LastName</h4>
+        <div class="jobtitle-container">
+            <div class="jobtitle">@Model.JobTitle</div>
+        </div>
+        <div class="email">@Model.Email</div>
+        <div class="phone">@Model.PhoneNumber</div>
+    </main>
+
+    <footer class="member-card-footer">
+        <button class="member-message-button">Message</button>
+    </footer>
+</div>

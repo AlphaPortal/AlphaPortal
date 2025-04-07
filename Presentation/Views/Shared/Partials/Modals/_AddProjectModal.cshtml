@@ -8,7 +8,7 @@
         </div>
 
         <div class="card-body">
-            <form asp-controller="Project" asp-action="AddProject" method="post" enctype="multipart/form-data" data-target="#addProjectModal">
+            <form asp-controller="Project" asp-action="Add" method="post" enctype="multipart/form-data" data-target="#addProjectModal" novalidate>
 
                 <div class="image-preview-container">
                     <div class="image-border">
@@ -25,6 +25,7 @@
                 </div>
 
                 <div class="form-group">
+                    <label asp-for="ClientId"></label>
                     <select asp-for="ClientId" asp-items="Model.CLients">
                         <option value="" selected hidden disabled>Choose Client</option>
                     </select>

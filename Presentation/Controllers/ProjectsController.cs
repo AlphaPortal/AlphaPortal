@@ -13,8 +13,9 @@ public class ProjectsController(IClientService clientService) : Controller
     private readonly IClientService _clientService = clientService;
 
     [Route("admin/projects")]
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
+        var clients = await GetClientsSelectListAsync();
 
         var projects = new List<Project> {
                 new() {Id = 1, Title = "Website Redesign", Description = "GitLab Inc.", Message = "It is necessary to develop a website redesign in a corporate style.", TimeLeft = "1 week left"},
@@ -29,14 +30,15 @@ public class ProjectsController(IClientService clientService) : Controller
 
         var pvm = new ProjectsViewModel
         {
-            Projects = projects
+            Projects = projects,
+            AddProjectViewModel = new AddProjectViewModel() { CLients = clients }
         };
             
         return View(pvm);
     }
 
-    [HttpGet]
-    public async Task<IActionResult> AddProject()
+    [HttpPost]
+    public async Task<IActionResult> Add()
     {
         var viewModel = new AddProjectViewModel
         {

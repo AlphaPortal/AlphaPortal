@@ -27,14 +27,10 @@ public class MembersController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddMember(AppUser user, string role)
+    public async Task<IActionResult> AddMember()
     {
-        var result = await _userService.AddUserAsync(user, role);
-        if (result.Succeeded)
-        {
-            return Ok(result);
-        }
-        return View(user);
+        
+        return View();
     }
 
 

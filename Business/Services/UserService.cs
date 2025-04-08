@@ -20,6 +20,7 @@ public class UserService(UserManager<AppUser> userManager, RoleManager<IdentityR
         var password = "BytMig123!";
         if (user != null)
         {
+            //var entity = UserFactory.Create(user);
             var result = await _userManager.CreateAsync(user, password);
             if (result.Succeeded)
             {

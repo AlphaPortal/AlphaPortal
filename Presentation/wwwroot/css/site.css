@@ -755,7 +755,7 @@ form {
     margin: 2rem;
     padding: 1.2rem 1.5rem;
     border-radius: 16px;
-    width: 100%;
+    max-width: 530px;
     box-shadow: var(--box-shadow);
 }
 
@@ -1247,6 +1247,39 @@ form {
 .add-project-member .btn-close:hover {
     background-color: transparent;
 }
+
+/* ============================= */
+/*       Member Modal           */
+/* ============================= */
+
+#addMemberModal .image-preview-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+#addMemberModal .image-border {
+    width: 150px;
+    height: 150px;
+    border: 1px dashed var(--border-color);
+    border-radius: 50%;
+}
+
+#addMemberModal .name-group {
+    display: flex;
+    gap: 1rem;
+}
+
+#addMemberModal form > button {
+    width: 100%;
+}
+
+#addMemberModal .date-of-birth .date-of-birth-input-group {
+    display: flex;
+    gap: 1rem;
+}
+
 
 /* ============================= */
 /*          Top Menu             */

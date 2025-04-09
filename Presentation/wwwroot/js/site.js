@@ -8,10 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initProfileOptionsDropDown()
     initSettingsMenuDropDown()
     initToggles()
-    initDescriptionStripHtml()
 
     updateRelativeTimes();
-    setInterval(updateRelativeTimes, 60000);
+    updateTimeRemaining();
+    setInterval(updateRelativeTimes, updateTimeRemaining, 60000);
 })
 
 function initMobileMenu() {
@@ -172,3 +172,54 @@ function updateRelativeTimes() {
         el.textContent = relativeTime;
     });
 }
+
+function updateTimeRemaining() {
+    const elements = document.querySelectorAll('.time');
+    const now = new Date();
+    console.log('Current time:', now); 
+
+    elements.forEach(el => {
+        const endDateStr = el.getAttribute('data-enddate');
+        console.log('End date from attribute:', endDateStr);
+
+        const endDate = new Date(endDateStr);
+        console.log('Parsed end date:', endDate);
+
+        if (isNaN(endDate)) {
+            console.error("Invalid end date:", endDateStr);
+            return;
+        }
+
+        const diff = endDate - now;
+        const diffSeconds = Math.floor(diff / 1000);
+        const diffMinutes = Math.floor(diffSeconds / 60);
+        const diffHours = Math.floor(diffMinutes / 60);
+        const diffDays = Math.floor(diffHours / 24);
+        const diffWeeks = Math.floor(diffDays / 7);
+        const diffMonths = Math.floor(diffDays / 30);
+        const diffYears = Math.floor(diffDays / 365);
+
+        let remainingTime = '';
+
+        if (diff < 0) {
+            remainingTime = 'The event has passed';
+        } else if (diffYears >= 1) {
+            remainingTime = `In ${diffYears} year${diffYears > 1 ? 's' : ''}`;
+        } else if (diffMonths >= 1) {
+            remainingTime = `In ${diffMonths} month${diffMonths > 1 ? 's' : ''}`;
+        } else if (diffWeeks >= 1) {
+            remainingTime = `In ${diffWeeks} week${diffWeeks > 1 ? 's' : ''} left`;
+        } else if (diffDays >= 1) {
+            remainingTime = `In ${diffDays} day${diffDays > 1 ? 's' : ''} left`;
+        } else if (diffHours >= 1) {
+            remainingTime = `In ${diffHours} hour${diffHours > 1 ? 's' : ''} left`;
+        } else if (diffMinutes >= 1) {
+            remainingTime = `In ${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} left`;
+        } else {
+            remainingTime = `In ${diffSeconds} second${diffSeconds > 1 ? 's' : ''} left`;
+        }
+
+        el.textContent = remainingTime;
+    });
+}
+

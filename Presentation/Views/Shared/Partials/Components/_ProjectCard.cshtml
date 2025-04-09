@@ -12,13 +12,13 @@
         </button>
     </div>
     <main class="card-body">
-        <p id="project-description" data-raw-html="@Model.Description"></p>
+        <p id="project-description">@Html.Raw(Model.Description)</p>
     </main>
     <footer class="card-footer">
-        <span class="time-left">
+        <div class="time-left">
             <i class="bi bi-clock-fill"></i>
-            @Model.EndDate
-            </span>
+            <div class="time" data-enddate="@Model.EndDate?.ToString("s")">@Model.EndDate</div>
+        </div>
 
         <img class="project-card-profile-image" src="~/Images/Avatars/avatar.svg" />
         <img class="project-card-profile-image" src="~/Images/Avatars/avatar.svg" />

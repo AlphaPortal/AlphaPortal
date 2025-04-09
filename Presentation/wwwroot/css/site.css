@@ -869,7 +869,7 @@ form {
     }
 
 
-#optionsMenuDropdown {
+.options-dropdown-container {
     width: 230px;
     cursor: default;
 }
@@ -883,15 +883,15 @@ form {
     left: 65px;
 }
 
-    .options-dropdown-container.show {
-        display: block;
-    }
+.options-dropdown-container.show {
+    display: block;
+}
 
-#optionsMenuDropdown .option-buttons {
+.options-dropdown-container .option-buttons {
     display: grid;
 }
 
-#optionsMenuDropdown .option-buttons > button {
+.options-dropdown-container .option-buttons > button {
     height: 48px;
     width: 100%;
     border: none;
@@ -901,16 +901,16 @@ form {
     align-items: center;
     gap: 1rem;
 }
-#optionsMenuDropdown .option-buttons > button > i {
+.options-dropdown-container .option-buttons > button > i {
     font-size: 20px;
 }
 
-#optionsMenuDropdown .option-buttons .delete-option,
-#optionsMenuDropdown .option-buttons .delete-option > i {
+.options-dropdown-container .option-buttons .delete-option,
+.options-dropdown-container .option-buttons .delete-option > i {
     color: red;
 }
 
-#optionsMenuDropdown .option-buttons > button:hover {
+.options-dropdown-container .option-buttons > button:hover {
     background-color: var(--blue-light-opacity);
 }
 

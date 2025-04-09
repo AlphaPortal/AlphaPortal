@@ -29,6 +29,7 @@ public static class ProjectFactory
     {
         var project = new Project
         {
+            Id = projectEntity.Id,
             Image = projectEntity.Image,
             ProjectName = projectEntity.ProjectName,
             Description = projectEntity.Description,

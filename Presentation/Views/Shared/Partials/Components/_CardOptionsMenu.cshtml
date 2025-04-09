@@ -1,8 +1,10 @@
-﻿<div class="options-menu-container">
-    <div id="optionsMenuIcon" data-type="dropdown" data-target="#optionsMenuDropdown" class="options-menu-icon"><img src="~/Images/ButtonImages/two_dots.svg" alt="Card Menu Button Image" /></div>
+﻿@model string
+
+<div class="options-menu-container">
+    <div id="optionsMenuIcon" data-type="dropdown" data-target="#optionsMenuDropdown-@Model" class="options-menu-icon"><img src="~/Images/ButtonImages/two_dots.svg" alt="Card Menu Button Image" /></div>
 </div>
 
-<div id="optionsMenuDropdown" class="options-dropdown-container card">
+<div id="optionsMenuDropdown-@Model" class="options-dropdown-container card">
     <div class="option-buttons">
         <button class="edit-option">
             <i class="bi bi-pencil-fill"></i>

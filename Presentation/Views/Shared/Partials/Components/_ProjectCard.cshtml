@@ -2,13 +2,13 @@
 
 <div id="projectCard" class="card">
     <div class="project-card-header">
-        <img class="project-image" src="~/Images/Projects/@Model.Image" alt="Card Image" />
+        <img class="project-image" src="~/Images/Projects/@Model.Image" alt="Card Image"/>
 
         <span class="project-title">@Model.ProjectName</span>
         <span class="project-description">@Model.Client.ClientName</span>
 
         <div class="project-menu-btn">
-            <partial name="Partials/Components/_CardOptionsMenu" />
+            <partial name="Partials/Components/_CardOptionsMenu" model="@Model.Id"/>
         </div>
     </div>
     <main class="card-body">

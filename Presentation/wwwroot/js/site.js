@@ -59,6 +59,7 @@ function initializeDropdowns() {
     const dropdownElements = new Set()
     dropdownTriggers.forEach(trigger => {
         const targetSelector = trigger.getAttribute('data-target')
+        console.log("Dropdown id: ", targetSelector)
         if (targetSelector) {
             const dropdown = document.querySelector(targetSelector)
             if (dropdown) {

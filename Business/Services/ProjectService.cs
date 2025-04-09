@@ -2,7 +2,6 @@
 using Business.Interfaces;
 using Business.Models;
 using Data.Interfaces;
-using Domain.Models;
 
 namespace Business.Services;
 

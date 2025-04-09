@@ -8,44 +8,54 @@ using Presentation.Models;
 namespace Presentation.Controllers;
 
 [Authorize]
-public class ProjectsController(IClientService clientService) : Controller
+public class ProjectsController(IClientService clientService, IProjectService projectService) : Controller
 {
     private readonly IClientService _clientService = clientService;
+    private readonly IProjectService _projectService = projectService;
 
     [Route("admin/[controller]")]
     public async Task<IActionResult> Index()
     {
         var clients = await GetClientsSelectListAsync();
-
-        var projects = new List<Project> {
-                new() {Id = 1, Title = "Website Redesign", Description = "GitLab Inc.", Message = "It is necessary to develop a website redesign in a corporate style.", TimeLeft = "1 week left"},
-                new() {Id = 2, Title = "Landing Page", Description = "Bitbucket, Inc.", Message = "It is necessary to create a landing together with the development of design.", TimeLeft = "1 week left"},
-                new() {Id = 3, Title = "Parser Development", Description = "Driveway, Inc..", Message = "It is necessary to develop a ticket site parser in python.", TimeLeft = "5 days left"},
-                new() {Id = 4, Title = "App Development", Description = "Slack Technologies, Inc.", Message = "Create a mobile application on iOS and Android devices.", TimeLeft = "5 days left"},
-                new() {Id = 5, Title = "Website Redesign", Description = "GitLab Inc.", Message = "It is necessary to develop a website redesign in a corporate style.", TimeLeft = "1 week left"},
-                new() {Id = 6, Title = "Landing Page", Description = "Bitbucket, Inc.", Message = "It is necessary to create a landing together with the development of design.", TimeLeft = "1 week left"},
-                new() {Id = 7, Title = "Parser Development", Description = "Driveway, Inc..", Message = "It is necessary to develop a ticket site parser in python.", TimeLeft = "5 days left"},
-                new() {Id = 8, Title = "App Development", Description = "Slack Technologies, Inc.", Message = "Create a mobile application on iOS and Android devices.", TimeLeft = "5 days left"},
-            };
+        var result = await _projectService.GetProjectsAsync();
+        var projects = result.Result;
 
         var pvm = new ProjectsViewModel
         {
             Projects = projects,
-            AddProjectViewModel = new AddProjectViewModel() { CLients = clients }
+            AddProjectViewModel = new AddProjectViewModel() { Clients = clients }
         };
-            
+
         return View(pvm);
     }
 
+
     [HttpPost]
-    public async Task<IActionResult> Add()
+    public async Task<IActionResult> AddProject(AddProjectViewModel model)
     {
-        var viewModel = new AddProjectViewModel
+        if (!ModelState.IsValid)
         {
-            CLients = await GetClientsSelectListAsync()
+            return BadRequest();
+        }
+
+        var addProjectForm = new AddProjectForm
+        {
+            ProjectName = model.ProjectName,
+            Description = model.Description,
+            StartDate = DateTime.Now,
+            EndDate = DateTime.Now,
+            ClientId = model.ClientId,
+            Budget = model.Budget,
+            UserId = model.UserIds,
         };
 
-        return PartialView("~/Views(Shared/Modals(_AddProjectModal", viewModel);
+        var result = await _projectService.CreateProjectsync(addProjectForm);
+        if (result.Succeeded)
+        {
+            return RedirectToAction("Index");
+        }
+
+        return View(model);
     }
 
 

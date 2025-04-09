@@ -22,7 +22,7 @@ public class ProjectEntity
 
 
     [ForeignKey(nameof(Status))]
-    public int StatusId { get; set; }
+    public int StatusId { get; set; } = 1;
     public virtual StatusEntity Status { get; set; } = null!;
 
 
@@ -31,7 +31,5 @@ public class ProjectEntity
     public ClientEntity Client { get; set; } = null!;
 
 
-    [ForeignKey(nameof(User))]
     public string UserId { get; set; } = null!;
-    public AppUser User { get; set; } = null!;
 }

@@ -9,7 +9,7 @@
 <div class="profile-menu-container">
     @if (!string.IsNullOrEmpty(profile!.Image))
     {
-        <img id="profileAvatar" class="profile-avatar" src="~/Images/Profiles/@profile?.Image" alt="@displayName" />
+        <img id="profileAvatar" class="profile-avatar" src="~/Images/Profiles/@profile!.Image" alt="@displayName" />
     }
     else
     {
@@ -22,11 +22,11 @@
     <div class="profile-info">
         @if (!string.IsNullOrEmpty(profile!.Image))
         {
-            <img class="profile-avatar-mini" src="@profile?.Image" alt="@displayName" />
+            <img class="profile-avatar-mini" src="~/Images/Profiles/@profile!.Image" alt="@displayName" />
         }
         else
         {
-            <img class="profile-avatar-mini" src="~/Images/Avatars/avatar.svg" alt="Avatar Image" />
+            <img class="profile-avatar-mini" src="~/Images/Profiles/avatar.svg" alt="Avatar Image" />
         }
         <span class="profile-name">@displayName</span>
     </div>

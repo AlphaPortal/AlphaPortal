@@ -4,20 +4,20 @@
     <div class="project-card-header">
         <img class="project-image" src="~/Images/CardImages/card-image1.svg" alt="Card Image" />
 
-        <span class="project-title">@Model.Title</span>
-        <span class="project-description">@Model.Description</span>
+        <span class="project-title">@Model.ProjectName</span>
+        <span class="project-description">@Model.Client.ClientName</span>
 
         <button class="project-menu-btn">
             <img src="~/Images/ButtonImages/two_dots.svg" alt="Card Menu Button Image" />
         </button>
     </div>
     <main class="card-body">
-        <p>@Model.Message</p>
+        <p>@Model.Description</p>
     </main>
     <footer class="card-footer">
         <span class="time-left">
             <i class="bi bi-clock-fill"></i>
-            @Model.TimeLeft
+            @Model.EndDate
             </span>
 
         <img class="project-card-profile-image" src="~/Images/Avatars/avatar.svg" />

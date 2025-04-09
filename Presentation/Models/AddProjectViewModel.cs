@@ -36,5 +36,5 @@ public class AddProjectViewModel
 
     [Display(Name = "Members", Prompt = "Search for members")]
     public string? UserIds { get; set; }
-    public IEnumerable<SelectListItem> CLients { get; set; } = [];
+    public IEnumerable<SelectListItem> Clients { get; set; } = [];
 }

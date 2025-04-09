@@ -117,7 +117,8 @@
     }
 
     function addTag(item) {
-        const id = parseInt(item.id);
+        const id = item.id
+
         if (selectedIds.includes(id)) return;
 
         selectedIds.push(id);
@@ -170,9 +171,11 @@
     }
 
     function updateSelectedIdsInput() {
+        console.log(selectedIds)
+
         const hiddenInput = selectedInputIds;
         if (hiddenInput) {
-            hiddenInput.value = JSON.stringify(selectedIds);
+            hiddenInput.value = selectedIds;
         }
     }
 }

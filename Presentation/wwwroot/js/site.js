@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initProfileOptionsDropDown()
     initSettingsMenuDropDown()
     initToggles()
+    initDescriptionStripHtml()
 
     updateRelativeTimes();
     setInterval(updateRelativeTimes, 60000);

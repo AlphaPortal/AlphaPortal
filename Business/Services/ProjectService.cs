@@ -54,4 +54,15 @@ public class ProjectService(IProjectRepository projectRepository, IUserRepositor
 
         return new ProjectResult<IEnumerable<Project>> { Succeeded = true, StatusCode = 200, Result = projects };
     }
+
+    public async Task<ProjectResult> RemoveProjectAsync(string id)
+    {
+        var result = await _projectRepository.DeleteAsync(p => p.Id == id);
+        if (result.Succeeded)
+        {
+            return new ProjectResult { Succeeded = true, StatusCode = 200 };
+        }
+
+        return new ProjectResult { Succeeded = false, StatusCode = 400, Error = result.Error };
+    }
 }

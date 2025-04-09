@@ -6,5 +6,6 @@ namespace Business.Interfaces
     {
         Task<ProjectResult> CreateProjectsync(AddProjectForm project);
         Task<ProjectResult<IEnumerable<Project>>> GetProjectsAsync();
+        Task<ProjectResult> RemoveProjectAsync(string id);
     }
 }

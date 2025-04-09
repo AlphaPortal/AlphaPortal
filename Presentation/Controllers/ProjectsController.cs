@@ -58,6 +58,18 @@ public class ProjectsController(IClientService clientService, IProjectService pr
         return View(model);
     }
 
+    [HttpPost]
+    public async Task<IActionResult> RemoveProject(string id)
+    {
+        var result = await _projectService.RemoveProjectAsync(id);
+        if (result.Succeeded)
+        {
+            return RedirectToAction("Index");
+        }
+
+        return View(id);
+    }
+
 
     private async Task<IEnumerable<SelectListItem>> GetClientsSelectListAsync()
     {

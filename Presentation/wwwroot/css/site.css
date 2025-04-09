@@ -891,7 +891,8 @@ form {
     display: grid;
 }
 
-.options-dropdown-container .option-buttons > button {
+.option-buttons > button,
+.option-buttons > form > button {
     height: 48px;
     width: 100%;
     border: none;
@@ -901,16 +902,17 @@ form {
     align-items: center;
     gap: 1rem;
 }
-.options-dropdown-container .option-buttons > button > i {
+.delete-option > button > i {
     font-size: 20px;
 }
 
-.options-dropdown-container .option-buttons .delete-option,
-.options-dropdown-container .option-buttons .delete-option > i {
+.delete-option,
+.delete-option > button > i {
     color: red;
 }
 
-.options-dropdown-container .option-buttons > button:hover {
+.option-buttons > button:hover,
+.option-buttons > form > button:hover {
     background-color: var(--blue-light-opacity);
 }
 

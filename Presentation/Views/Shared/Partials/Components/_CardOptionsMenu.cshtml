@@ -18,10 +18,13 @@
 
         <div class="options-divider"></div>
 
-        <button class="delete-option">
-            <i class="bi bi-trash"></i>
-            Delete Project
-        </button>
+        <form asp-controller="Projects" asp-action="RemoveProject" method="post" novalidate>
+            <input type="hidden" name="id" value="@Model" />
+            <button type="submit" class="delete-option">
+                <i class="bi bi-trash"></i>
+                Delete Project
+            </button>
+        </form>
     </div>
 
 </div>

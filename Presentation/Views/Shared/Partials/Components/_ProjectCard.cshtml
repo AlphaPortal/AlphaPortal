@@ -2,7 +2,7 @@
 
 <div id="projectCard" class="card">
     <div class="project-card-header">
-        <img class="project-image" src="~/Images/CardImages/card-image1.svg" alt="Card Image" />
+        <img class="project-image" src="~/Images/Projects/@Model.Image" alt="Card Image" />
 
         <span class="project-title">@Model.ProjectName</span>
         <span class="project-description">@Model.Client.ClientName</span>
@@ -20,8 +20,6 @@
             <div class="end-time" data-enddate="@Model.EndDate?.ToString("s")">@Model.EndDate</div>
         </div>
 
-        <img class="project-card-profile-image" src="~/Images/Avatars/avatar.svg" />
-        <img class="project-card-profile-image" src="~/Images/Avatars/avatar.svg" />
-        <img class="project-card-profile-image" src="~/Images/Avatars/avatar.svg" />
+        <img class="project-card-profile-image" src="~/Images/Profiles/@Model.User.Image" />
     </footer>
 </div>

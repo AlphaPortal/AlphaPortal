@@ -4,9 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCloseButtons()
     initMobileMenu()
     initModals()
-    initNotificationsMenuDropDown()
-    initProfileOptionsDropDown()
-    initSettingsMenuDropDown()
+    initializeDropdowns()
     initToggles()
 
     updateRelativeTimes();
@@ -55,51 +53,51 @@ function initCloseButtons() {
     })
 }
 
-function initProfileOptionsDropDown() {
-    const avatar = document.getElementById('profileAvatar')
-    const dropdown = document.getElementById('profileDropdown')
+function initializeDropdowns() {
+    const dropdownTriggers = document.querySelectorAll('[data-type="dropdown"]')
 
-    avatar.addEventListener('click', function () {
-        dropdown.classList.toggle('show')
-    });
-
-    document.addEventListener('click', function (e) {
-        if (!avatar.contains(e.target) && !dropdown.contains(e.target)) {
-            dropdown.classList.remove('show')
+    const dropdownElements = new Set()
+    dropdownTriggers.forEach(trigger => {
+        const targetSelector = trigger.getAttribute('data-target')
+        if (targetSelector) {
+            const dropdown = document.querySelector(targetSelector)
+            if (dropdown) {
+                dropdownElements.add(dropdown)
+            }
         }
-    });
+    })
+
+    dropdownTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation()
+            const targetSelector = trigger.getAttribute('data-target')
+            if (!targetSelector) return
+            const dropdown = document.querySelector(targetSelector)
+            if (!dropdown) return
+
+            closeAllDropdowns(dropdown, dropdownElements)
+            dropdown.classList.toggle('show')
+        })
+    })
+
+    dropdownElements.forEach(dropdown => {
+        dropdown.addEventListener('click', (e) => {
+            e.stopPropagation()
+        })
+    })
+
+    document.addEventListener('click', () => {
+        closeAllDropdowns(null, dropdownElements)
+    })
 }
 
-function initSettingsMenuDropDown() {
-    const icon = document.getElementById('settingsIcon')
-    const dropdown = document.getElementById('settingsDropdown')
-
-    icon.addEventListener('click', function () {
-        dropdown.classList.toggle('show')
-    });
-
-    document.addEventListener('click', function (e) {
-        if (!icon.contains(e.target) && !dropdown.contains(e.target)) {
+function closeAllDropdowns(exceptDropdown, dropdownElements) {
+    dropdownElements.forEach(dropdown => {
+        if (dropdown !== exceptDropdown) {
             dropdown.classList.remove('show')
         }
-    });
+    })
 }
-
-function initNotificationsMenuDropDown() {
-    const icon = document.getElementById('notificationsIcon')
-    const dropdown = document.getElementById('notificationsDropdown')
-
-    icon.addEventListener('click', function () {
-        dropdown.classList.toggle('show')
-    });
-
-    document.addEventListener('click', function (e) {
-        if (!icon.contains(e.target) && !dropdown.contains(e.target)) {
-            dropdown.classList.remove('show')
-        }
-    });
-}
-
 
 function removeSidebarShowOnResize() {
     const sidebar = document.getElementById('sidebar')

@@ -9,11 +9,11 @@
 <div class="profile-menu-container">
     @if (!string.IsNullOrEmpty(profile!.Image))
     {
-        <img id="profileAvatar" class="profile-avatar" src="~/Images/Profiles/@profile!.Image" alt="@displayName" />
+        <img id="profileAvatar" data-type="dropdown" data-target="#profileDropdown" class="profile-avatar" src="~/Images/Profiles/@profile!.Image" alt="@displayName" />
     }
     else
     {
-        <img id="profileAvatar" class="profile-avatar" src="~/Images/Avatars/avatar.svg" alt="Avatar Image" />
+        <img id="profileAvatar" data-type="dropdown" data-target="#profileDropdown" class="profile-avatar" src="~/Images/Avatars/avatar.svg" alt="Avatar Image" />
     }
 
 </div>

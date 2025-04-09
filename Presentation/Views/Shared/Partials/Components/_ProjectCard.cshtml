@@ -7,9 +7,9 @@
         <span class="project-title">@Model.ProjectName</span>
         <span class="project-description">@Model.Client.ClientName</span>
 
-        <button class="project-menu-btn">
-            <img src="~/Images/ButtonImages/two_dots.svg" alt="Card Menu Button Image" />
-        </button>
+        <div class="project-menu-btn">
+            <partial name="Partials/Components/_CardOptionsMenu" />
+        </div>
     </div>
     <main class="card-body">
         <p id="project-description">@Html.Raw(Model.Description)</p>

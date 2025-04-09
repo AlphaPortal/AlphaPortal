@@ -174,7 +174,7 @@ function updateRelativeTimes() {
 }
 
 function updateTimeRemaining() {
-    const elements = document.querySelectorAll('.time');
+    const elements = document.querySelectorAll('.end-time');
     const now = new Date();
     console.log('Current time:', now); 
 
@@ -202,7 +202,7 @@ function updateTimeRemaining() {
         let remainingTime = '';
 
         if (diff < 0) {
-            remainingTime = 'The event has passed';
+            remainingTime = 'Passed';
         } else if (diffYears >= 1) {
             remainingTime = `In ${diffYears} year${diffYears > 1 ? 's' : ''}`;
         } else if (diffMonths >= 1) {

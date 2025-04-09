@@ -1155,27 +1155,27 @@ form {
     }
 
 
-    /* ============================= */
-    /*       Project Modal           */
-    /* ============================= */
-    #addClientModal .card {
-        width: 550px;
-    }
+/* ============================= */
+/*     Add  Project Modal        */
+/* ============================= */
+#addClientModal .card {
+    width: 550px;
+}
 
-#addProjectModal {
+.project-modal {
     z-index: 1000;
 }
 
-    #addProjectModal .btn-close:hover {
-        background-color: transparent;
-    }
+.project-modal .btn-close:hover {
+    background-color: transparent;
+}
 
-    #addProjectModal .image-preview-container {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.project-modal .image-preview-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .image-border {
     width: 120px;
@@ -1201,24 +1201,24 @@ form {
     color: var(--gray-600);
 }
 
-#addProjectModal .card {
+.project-modal .card {
     max-width: 450px;
 }
 
-#addProjectModal .card-body {
+.project-modal .card-body {
     margin: 0;
 }
 
-#addProjectModal .card-body .btn-submit {
+.project-modal .card-body .btn-submit {
     margin: 0;
     width: 100%;
 }
 
-#addProjectModal .card-body .form-group {
+.project-modal .card-body .form-group {
     margin-top: 1rem;
 }
 
-#addProjectModal .card-body .form-group > textarea {
+.project-modal .card-body .form-group > textarea {
     min-height: 100px;
     resize: vertical;
 }
@@ -1233,16 +1233,16 @@ form {
     flex-direction: column;
 }
 
-.add-project-members-container {
+.project-members-container {
     margin-top: 1rem;
 }
 
-    .add-project-members-group >label > i {
-        margin-right: 0.5em;
-        cursor: pointer;
-    }
+.project-members-group >label > i {
+    margin-right: 0.5em;
+    cursor: pointer;
+}
 
-.add-project-members-group {
+.project-members-group {
     padding: 0.3rem;
     border: 1px solid var(--border-color);
     border-radius: 14px;
@@ -1251,7 +1251,7 @@ form {
     justify-content: space-between;
 }
 
-.add-project-members {
+.project-members {
     display: flex;
     align-items: center;
     gap: 2px;
@@ -1273,18 +1273,18 @@ form {
     border: none;
 }
 
-.add-project-members-group > button {
+.project-members-group > button {
     border: none;
     background-color: transparent;
     cursor: pointer;
 }
 
-.add-project-members-group > button .bi-search {
+.project-members-group > button .bi-search {
     margin-left: 5px;
     font-size: 20px;
 }
 
-.add-project-member {
+.project-member {
     padding: 0.3rem;
     display: flex;
     align-items: center;
@@ -1293,16 +1293,16 @@ form {
     border-radius: 8px;
 }
 
-.add-project-member > img {
+.project-member > img {
     width: 22px;
     height: 22px;
 }
 
-.add-project-member .btn-close {
+.project-member .btn-close {
     font-size: 12px;
 }
 
-.add-project-member .btn-close:hover {
+.project-member .btn-close:hover {
     background-color: transparent;
 }
 

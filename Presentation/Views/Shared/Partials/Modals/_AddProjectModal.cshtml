@@ -5,7 +5,7 @@
     var selectedUsersJson = "[]";
 }
 
-<div id="addProjectModal" class="modal">
+<div id="addProjectModal" class="project-modal modal">
     <div class="card">
         <div class="card-header">
             <h3>Add Project</h3>
@@ -39,9 +39,9 @@
                 <div class="form-group">
                     <label asp-for="Description"></label>
                         <div class="wysiwyg-container">
-                        <textarea id="add-project-description" asp-for="Description"></textarea>
-                        <div id="add-project-description-editor" class="wysiwyg-editor"></div>
-                        <div id="add-project-description-toolbar" class="wysiwyg-toolbar">
+                        <textarea id="project-description" asp-for="Description"></textarea>
+                        <div id="project-description-editor" class="wysiwyg-editor"></div>
+                        <div id="project-description-toolbar" class="wysiwyg-toolbar">
                             <span class="ql-formats">
                                 <button class="ql-bold"></button>
                                 <button class="ql-italic"></button>
@@ -74,10 +74,10 @@
                     </div>
                 </div>
 
-                <div class="add-project-members-container">
+                <div class="project-members-container">
                    <div class="add-project-members-group">
 
-                        <div class="add-project-members">
+                        <div class="project-members">
                             <input type="hidden" asp-for="UserIds" />
 
                             <div id="tagged-users" class="form-input form-tag-select">
@@ -110,7 +110,7 @@
 <script>
     const preSelectedUsers = @Html.Raw(selectedUsersJson);
 
-    initWysiwygEditor("#add-project-description-editor", "#add-project-description-toolbar", "#add-project-description", "@Html.Raw(Model?.Description ?? "")");
+    initWysiwygEditor("#project-description-editor", "#project-description-toolbar", "#project-description", "@Html.Raw(Model?.Description ?? "")");
 
     initTagSelector({
         containerId: 'tagged-users',

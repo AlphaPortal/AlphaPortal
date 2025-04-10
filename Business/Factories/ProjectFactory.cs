@@ -64,4 +64,30 @@ public static class ProjectFactory
 
         return project;
     }
+
+    public static Project Create(ProjectEntity entity)
+    {
+        var project = new Project
+        {
+            Id = entity.Id,
+            Image = entity.Image,
+            ProjectName = entity.ProjectName,
+            Description = entity.Description,
+            StartDate = entity.StartDate,
+            EndDate = entity.EndDate,
+            Budget = entity.Budget,
+            Created = entity.Created,
+            StatusId = entity.StatusId,
+            ClientId = entity.ClientId,
+            UserId = entity.UserId,
+
+            //Client = new Client
+            //{
+            //    Image = entity.Client.Image,
+            //    ClientName = entity.Client.ClientName,
+            //}
+        };
+
+        return project;
+    }
 }

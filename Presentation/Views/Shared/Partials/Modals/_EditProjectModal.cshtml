@@ -1,47 +1,42 @@
-﻿@using System.Text.Json
-@model AddProjectViewModel
+﻿@model Project
 
 @{
-    var selectedUUsersJson = "[]";
+    var project = Model;
 }
 
-<div id="addProjectModal" class="project-modal modal">
+<div id="editProjectModal-@project.Id" class="project-modal modal">
     <div class="card">
         <div class="card-header">
             <h3>Add Project</h3>
-            <button type="button" data-type="close" data-target="#addProjectModal" class="btn btn-close"></button>
+            <button type="button" data-type="close" data-target="#editProjectModal-@project.Id" class="btn btn-close"></button>
         </div>
 
         <div class="card-body">
-            <form asp-controller="Projects" asp-action="AddProject" method="post" enctype="multipart/form-data" data-target="#addProjectModal" novalidate>
+            <form asp-controller="Projects" asp-action="EditProject" method="post" enctype="multipart/form-data" data-target="#editProjectModal-@project.Id" novalidate>
 
                 <div class="image-preview-container">
-                    <div class="image-border">
-                        <div id="circle-container" class="circle-image">
-                            <i class="bi bi-camera-fill"></i>
-                        </div>
-                    </div>
+                    <img src="~/Images/Projects/@project.Image" />
                 </div>
 
                 <div class="form-group">
-                     <label asp-for="ProjectName"></label>
-                     <input asp-for="ProjectName" />
-                    
+                    <label asp-for="ProjectName"></label>
+                    <input asp-for="ProjectName" />
+
                 </div>
 
                 <div class="form-group">
                     <label asp-for="ClientId"></label>
-                    <select asp-for="ClientId" asp-items="Model.Clients">
+                    <select asp-for="ClientId">
                         <option value="" selected hidden disabled>Choose Client</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label asp-for="Description"></label>
-                        <div class="wysiwyg-container">
-                        <textarea id="project-description" asp-for="Description"></textarea>
-                        <div id="project-description-editor" class="wysiwyg-editor"></div>
-                        <div id="project-description-toolbar" class="wysiwyg-toolbar">
+                    <div class="wysiwyg-container">
+                        <textarea id="project-description-@project.Id" asp-for="Description"></textarea>
+                        <div id="project-description-editor-@project.Id" class="wysiwyg-editor"></div>
+                        <div id="project-description-toolbar-@project.Id" class="wysiwyg-toolbar">
                             <span class="ql-formats">
                                 <button class="ql-bold"></button>
                                 <button class="ql-italic"></button>
@@ -66,41 +61,41 @@
                 <div class="date-group">
                     <div class="date-label">
                         <label asp-for="StartDate"></label>
-                        <input asp-for="StartDate"/>
+                        <input asp-for="StartDate" />
                     </div>
                     <div class="date-label">
                         <label asp-for="EndDate"></label>
-                        <input asp-for="EndDate"/>
+                        <input asp-for="EndDate" />
                     </div>
                 </div>
 
                 <div class="project-members-container">
-                   <div class="project-members-group">
+                    <div class="project-members-group">
 
                         <div class="project-members">
-                            <input type="hidden" asp-for="UserIds" />
+                            <input type="hidden" asp-for="UserId" />
 
                             <div id="tagged-users" class="form-input form-tag-select">
                                 <input type="text" id="user-search" class="form-tag-input" placeholder="Add member..." />
-                                
+
                                 <div id="user-search-results" class="search-results"></div>
                             </div>
 
                         </div>
 
-                        <label for="user-search" ><i class="bi bi-search"></i></label>
-                   </div>
+                        <label for="user-search"><i class="bi bi-search"></i></label>
+                    </div>
                 </div>
 
                 <div class="budget-group">
                     <label asp-for="Budget"></label>
-                   <div class="budget-input">
+                    <div class="budget-input">
                         <i class="bi bi-currency-dollar"></i>
-                        <input placeholder="0" asp-for="Budget"/>
-                   </div>
+                        <input placeholder="0" asp-for="Budget" />
+                    </div>
                 </div>
 
-                <button type="submit" class="btn btn-submit">Create</button>
+                <button type="submit" class="btn btn-submit">Save</button>
 
             </form>
         </div>
@@ -108,21 +103,7 @@
 </div>
 
 <script>
-    let preSelectedUUsers = @Html.Raw(selectedUUsersJson);
 
-    initWysiwygEditor("#project-description-editor", "#project-description-toolbar", "#project-description", "@Html.Raw(Model?.Description ?? "")");
+    initWysiwygEditor("#project-description-editor-@project?.Id", "#project-description-toolbar-@project?.Id", "#project-description-@project?.Id", "@Html.Raw(project?.Description ?? "")");
 
-    initTagSelector({
-        containerId: 'tagged-users',
-        inputId: 'user-search',
-        resultsId: 'user-search-results',
-        searchUrl: (query) => '@Url.Action("SearchUsers", "Members")' + '?term=' + encodeURIComponent(query),
-        displayProperty: 'fullName',
-        imageProperty: 'imageUrl',
-        tagClass: 'user-tag',
-        avatarFolder: '/images/profiles/',
-        emptyMessage: 'No members found.',
-        preSelected: preSelectedUUsers,
-        selectedInputIds: 'UserIds'
-    })
 </script>

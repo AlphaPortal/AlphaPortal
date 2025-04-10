@@ -1,6 +1,7 @@
 ﻿function initWysiwygEditor(editorId, toolbarId, textareaId, content) {
     const textarea = document.querySelector(textareaId)
 
+
     const quill = new Quill(editorId, {
         modules: {
             syntax: true,

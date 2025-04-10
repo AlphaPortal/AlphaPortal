@@ -1,12 +1,21 @@
-﻿@model string
+﻿@model Project
+
+@{
+    var project = Model;
+}
 
 <div class="options-menu-container">
-    <div id="optionsMenuIcon" data-type="dropdown" data-target="#optionsMenuDropdown-@Model" class="options-menu-icon"><img src="~/Images/ButtonImages/two_dots.svg" alt="Card Menu Button Image" /></div>
+    <div id="optionsMenuIcon" data-type="dropdown" data-target="#optionsMenuDropdown-@project.Id" class="options-menu-icon"><img src="~/Images/ButtonImages/two_dots.svg" alt="Card Menu Button Image" /></div>
 </div>
 
-<div id="optionsMenuDropdown-@Model" class="options-dropdown-container card">
+<div id="optionsMenuDropdown-@project.Id" class="options-dropdown-container card">
     <div class="option-buttons">
-        <button class="edit-option">
+       @* <form asp-controller="Projects" asp-action="EditProject" method="get" novalidate>
+            <input type="hidden" name="id" value="@project.Id" />
+            
+       </form> *@
+
+        <button type="button" data-type="modal" data-target="#editProjectModal-@project.Id" class="edit-option">
             <i class="bi bi-pencil-fill"></i>
             Edit
         </button>
@@ -19,7 +28,7 @@
         <div class="options-divider"></div>
 
         <form asp-controller="Projects" asp-action="RemoveProject" method="post" novalidate>
-            <input type="hidden" name="id" value="@Model" />
+            <input type="hidden" name="id" value="@project.Id" />
             <button type="submit" class="delete-option">
                 <i class="bi bi-trash"></i>
                 Delete Project
@@ -28,3 +37,5 @@
     </div>
 
 </div>
+
+<partial name="Partials/Modals/_EditProjectModal" model="@Model"/>

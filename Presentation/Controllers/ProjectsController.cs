@@ -42,8 +42,8 @@ public class ProjectsController(IClientService clientService, IProjectService pr
         {
             ProjectName = model.ProjectName,
             Description = model.Description,
-            StartDate = DateTime.Now,
-            EndDate = DateTime.Now,
+            StartDate = model.StartDate,
+            EndDate = model.EndDate,
             ClientId = model.ClientId,
             Budget = model.Budget,
             UserId = model.UserIds,
@@ -56,6 +56,12 @@ public class ProjectsController(IClientService clientService, IProjectService pr
         }
 
         return View(model);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> EditProject(Project project)
+    {
+        return View();
     }
 
     [HttpPost]

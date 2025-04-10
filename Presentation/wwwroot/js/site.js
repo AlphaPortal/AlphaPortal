@@ -24,13 +24,14 @@ function initMobileMenu() {
     })
 }
 
+
 function initModals() {
     const buttons = document.querySelectorAll('[data-type="modal"]')
     buttons.forEach(button => {
         button.addEventListener('click', () => {
             const target = button.getAttribute('data-target')
             const targetElement = document.querySelector(target)
-            console.log("TARGET: ", targetElement)
+            
             if (targetElement) {
                 
                 targetElement.classList.add('show')
@@ -59,7 +60,6 @@ function initializeDropdowns() {
     const dropdownElements = new Set()
     dropdownTriggers.forEach(trigger => {
         const targetSelector = trigger.getAttribute('data-target')
-        console.log("Dropdown id: ", targetSelector)
         if (targetSelector) {
             const dropdown = document.querySelector(targetSelector)
             if (dropdown) {
@@ -175,14 +175,11 @@ function updateRelativeTimes() {
 function updateTimeRemaining() {
     const elements = document.querySelectorAll('.end-time');
     const now = new Date();
-    console.log('Current time:', now); 
 
     elements.forEach(el => {
         const endDateStr = el.getAttribute('data-enddate');
-        console.log('End date from attribute:', endDateStr);
 
         const endDate = new Date(endDateStr);
-        console.log('Parsed end date:', endDate);
 
         if (isNaN(endDate)) {
             console.error("Invalid end date:", endDateStr);

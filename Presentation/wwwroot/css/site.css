@@ -1158,7 +1158,7 @@ form {
 
 
 /* ============================= */
-/*     Add  Project Modal        */
+/*  Add And Edit  Project Modal  */
 /* ============================= */
 #addClientModal .card {
     width: 550px;
@@ -1189,6 +1189,11 @@ form {
     border-radius: 20px;
 }
 
+.image-preview-container > img {
+    width: 150px;
+    height: 150px;
+}
+
 .circle-image {
     width: 40px;
     height: 40px;
@@ -1216,9 +1221,9 @@ form {
     width: 100%;
 }
 
-.project-modal .card-body .form-group {
-    margin-top: 1rem;
-}
+    .project-modal .card-body .form-group {
+        margin-top: 1rem;
+    }
 
 .project-modal .card-body .form-group > textarea {
     min-height: 100px;
@@ -1304,9 +1309,9 @@ form {
     font-size: 12px;
 }
 
-.project-member .btn-close:hover {
-    background-color: transparent;
-}
+    .project-member .btn-close:hover {
+        background-color: transparent;
+    }
 
 /* ============================= */
 /*       Member Modal           */

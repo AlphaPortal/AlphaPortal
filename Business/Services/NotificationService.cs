@@ -99,7 +99,7 @@ public class NotificationService(INotificationRepository notificationRepository,
     public async Task DismissNotificationAsync(string notificationId, string userId)
     {
         var exists = await _userDisMissNotificationRepository.ExistsAsync(x => x.NotificationId == notificationId && x.UserId == userId);
-        if (!exists.Succeeded)
+        if (!exists.Succeeded )
         {
             var entity = new UserDismissNotificationEntity
             {

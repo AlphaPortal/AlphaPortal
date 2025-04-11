@@ -81,7 +81,7 @@ public class ProjectsController(IClientService clientService, IProjectService pr
             {
                 NotificationTargetId = 1,
                 NotificationTypeId = 2,
-                Message = $"{project.ProjectName} - Updated",
+                Message = $"Project ({project.ProjectName})  Updated",
                 Image = project.Image,
             };
             return RedirectToAction("Index");

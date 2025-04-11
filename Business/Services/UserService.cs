@@ -2,6 +2,8 @@
 using Authentication.Factories;
 using Authentication.Models;
 using Business.Interfaces;
+using Data.Entities;
+using Data.Interfaces;
 using Domain.Models;
 using Domain.Responses;
 using Microsoft.AspNetCore.Identity;
@@ -9,18 +11,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Business.Services;
 
-public class UserService(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, AuthenticationContext context) : IUserService
+public class UserService(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, AuthenticationContext context, IUserDisMissNotificationRepository userDisMissNotificationRepository) : IUserService
 {
     private readonly AuthenticationContext _context = context;
     private readonly UserManager<AppUser> _userManager = userManager;
     private readonly RoleManager<IdentityRole> _roleManager = roleManager;
+    private readonly IUserDisMissNotificationRepository _userDisMissNotificationRepositor = userDisMissNotificationRepository;
 
     public async Task<UserResult> AddUserAsync(AppUser user, string role)
     {
         var password = "BytMig123!";
         if (user != null)
-        {
-            //var entity = UserFactory.Create(user);
+        {            
             var result = await _userManager.CreateAsync(user, password);
             if (result.Succeeded)
             {
@@ -33,7 +35,7 @@ public class UserService(UserManager<AppUser> userManager, RoleManager<IdentityR
         }
 
         return new UserResult { Succeeded = false, StatusCode = 400, Error = "Something went wrong." };
-   }
+    }
     public async Task<UserResult<IEnumerable<User>>> GetUsersAsync()
     {
         var entities = await _context.Users
@@ -43,7 +45,7 @@ public class UserService(UserManager<AppUser> userManager, RoleManager<IdentityR
 
         var users = UserFactory.Create(entities);
 
-        return new UserResult<IEnumerable<User>> { Succeeded = true, StatusCode = 200, Result = users};
+        return new UserResult<IEnumerable<User>> { Succeeded = true, StatusCode = 200, Result = users };
     }
 
     public async Task<UserResult<User>> GetUserByIdAsync(string id)
@@ -64,7 +66,7 @@ public class UserService(UserManager<AppUser> userManager, RoleManager<IdentityR
 
     public async Task<UserResult> UserExistsByEmailAsync(string email)
     {
-        if (string.IsNullOrEmpty(email)) 
+        if (string.IsNullOrEmpty(email))
         {
             return new UserResult { Succeeded = false, StatusCode = 400, Error = $"Email must be provided." };
         }

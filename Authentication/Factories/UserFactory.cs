@@ -13,6 +13,7 @@ public static class UserFactory
 
         var user = new User
         {
+            Id = appUser.Id,
             Email = appUser.Email ?? "",
             FirstName = appUser.Profile?.FirstName ?? "",
             LastName = appUser.Profile?.LastName ?? "",

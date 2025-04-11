@@ -2,7 +2,7 @@
 @model AddProjectViewModel
 
 @{
-    var selectedUUsersJson = "[]";
+    var selectedUsersJson = "[]";
 }
 
 <div id="addProjectModal" class="project-modal modal">
@@ -108,7 +108,7 @@
 </div>
 
 <script>
-    let preSelectedUUsers = @Html.Raw(selectedUUsersJson);
+    const preSelectedUsers = @Html.Raw(selectedUsersJson);
 
     initWysiwygEditor("#project-description-editor", "#project-description-toolbar", "#project-description", "@Html.Raw(Model?.Description ?? "")");
 
@@ -122,7 +122,7 @@
         tagClass: 'user-tag',
         avatarFolder: '/images/profiles/',
         emptyMessage: 'No members found.',
-        preSelected: preSelectedUUsers,
+        preSelected: preSelectedUsers,
         selectedInputIds: 'UserIds'
     })
 </script>

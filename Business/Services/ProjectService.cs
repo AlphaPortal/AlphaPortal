@@ -16,6 +16,11 @@ public class ProjectService(IProjectRepository projectRepository, IUserRepositor
     {
         if (projectForm != null)
         {
+            if(projectForm.Image == null)
+            {
+                projectForm.Image = "project_image_9.svg";
+            }
+
             var entity = ProjectFactory.Create(projectForm);
             var result = await _projectRepository.AddAsync(entity);
             if (result != null)

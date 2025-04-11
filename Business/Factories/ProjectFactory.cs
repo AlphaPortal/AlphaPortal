@@ -43,12 +43,14 @@ public static class ProjectFactory
 
             Client = new Client
             {
+                Id= clientEntity.Id,
                 Image = clientEntity.Image,
                 ClientName = clientEntity.ClientName,
             },
 
             User = new User
             {
+                Id = user.Id,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 JobTitle = user.JobTitle,

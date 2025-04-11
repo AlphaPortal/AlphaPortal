@@ -172,6 +172,7 @@ function updateRelativeTimes() {
     });
 }
 
+// Took help from ChatGpt
 function updateTimeRemaining() {
     const elements = document.querySelectorAll('.end-time');
     const now = new Date();
@@ -200,19 +201,19 @@ function updateTimeRemaining() {
         if (diff < 0) {
             remainingTime = 'Passed';
         } else if (diffYears >= 1) {
-            remainingTime = `In ${diffYears} year${diffYears > 1 ? 's' : ''}`;
+            remainingTime = `${diffYears} year${diffYears > 1 ? 's' : ''}`;
         } else if (diffMonths >= 1) {
-            remainingTime = `In ${diffMonths} month${diffMonths > 1 ? 's' : ''}`;
+            remainingTime = `${diffMonths} month${diffMonths > 1 ? 's' : ''}`;
         } else if (diffWeeks >= 1) {
-            remainingTime = `In ${diffWeeks} week${diffWeeks > 1 ? 's' : ''} left`;
+            remainingTime = `${diffWeeks} week${diffWeeks > 1 ? 's' : ''} left`;
         } else if (diffDays >= 1) {
-            remainingTime = `In ${diffDays} day${diffDays > 1 ? 's' : ''} left`;
+            remainingTime = `${diffDays} day${diffDays > 1 ? 's' : ''} left`;
         } else if (diffHours >= 1) {
-            remainingTime = `In ${diffHours} hour${diffHours > 1 ? 's' : ''} left`;
+            remainingTime = `${diffHours} hour${diffHours > 1 ? 's' : ''} left`;
         } else if (diffMinutes >= 1) {
-            remainingTime = `In ${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} left`;
+            remainingTime = `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} left`;
         } else {
-            remainingTime = `In ${diffSeconds} second${diffSeconds > 1 ? 's' : ''} left`;
+            remainingTime = `${diffSeconds} second${diffSeconds > 1 ? 's' : ''} left`;
         }
 
         el.textContent = remainingTime;

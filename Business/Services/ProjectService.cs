@@ -1,7 +1,10 @@
-﻿using Business.Factories;
+﻿using Authentication.Models;
+using Business.Factories;
 using Business.Interfaces;
 using Business.Models;
+using Data.Entities;
 using Data.Interfaces;
+using System.Linq.Expressions;
 
 namespace Business.Services;
 
@@ -34,9 +37,20 @@ public class ProjectService(IProjectRepository projectRepository, IUserRepositor
         return new ProjectResult { Succeeded = false, StatusCode = 500, Error = "Something went wrong" };
     }
 
-    public async Task<ProjectResult<IEnumerable<Project>>> GetProjectsAsync()
+
+    public async Task<ProjectResult<IEnumerable<Project>>> GetProjectsAsync(int status = 0)
     {
-        var entities = await _projectRepository.GetAllAsync();
+
+        // Took help from ChatGpt
+        Expression<Func<ProjectEntity, bool>>? filter = status > 0 ? p => p.StatusId == status : null;
+
+            var entities = await _projectRepository.GetAllAsync
+            (
+                orderByDescending: false,
+                sortByColumn: p => p.ProjectName,
+                filterBy: filter
+            );
+
         var projects = new List<Project>();
 
         foreach (var entity in entities.Result!)

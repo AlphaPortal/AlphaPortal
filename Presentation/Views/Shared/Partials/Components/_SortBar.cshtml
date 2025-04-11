@@ -1,24 +1,45 @@
-﻿<div class="sort-bar-container">
+﻿@{
+    var projectsResult = projectService.GetProjectsAsync(0).Result;
+    var projects = projectsResult.Result!.ToList();
+
+    var completeStatus = new List<int>();
+    var startedStatus = new List<int>();
+
+    foreach (var project in projects)
+    {
+        if (project.StatusId == 1)
+        {
+            startedStatus.Add(project.StatusId);
+        }
+        else if (project.StatusId == 2)
+        {
+            completeStatus.Add(project.StatusId);
+        }
+    }
+}
+
+@* Took help from ChatGpt to make the links active*@
+<div class="sort-bar-container">
     <div class="sort-links">
-        <div class="sort-link active-link">
-            <a href="#">
-                <span>ALL [9]</span>
+        <div class="sort-link @(ViewBag.Status == 0 ? "active-link" : "")">
+            <a asp-controller="Projects" asp-action="Index" asp-route-status="0">
+                <span>ALL [@projects.Count()]</span>
             </a>
-            <div class="sort-link-line active-link"></div>
+            <div class="sort-link-line  @(ViewBag.Status == 0 ? "active-link" : "")"></div>
         </div>
 
-        <div class="sort-link">
-            <a href="#">
-                <span>STARTED [5]</span>
+        <div class="sort-link @(ViewBag.Status == 1 ? "active-link" : "")">
+            <a class="sort-link" asp-controller="Projects" asp-action="Index" asp-route-status="1">
+                <span>STARTED [@startedStatus.Count()]</span>
             </a>
-            <div class="sort-link-line"></div>
+            <div class="sort-link-line @(ViewBag.Status == 1 ? "active-link" : "")"></div>
         </div>
 
-        <div class="sort-link">
-            <a href="#">
-                <span>COMPLETED [0]</span>
+        <div class="sort-link @(ViewBag.Status == 2? "active-link" : "")">
+            <a class="sort-link" asp-controller="Projects" asp-action="Index" asp-route-status="2">
+                <span>COMPLETED [@completeStatus.Count()]</span>
             </a>
-            <div class="sort-link-line"></div>
+            <div class="sort-link-line @(ViewBag.Status == 2 ? "active-link" : "")"></div>
         </div>
     </div>
 </div>

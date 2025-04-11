@@ -14,16 +14,18 @@ public class ProjectsController(IClientService clientService, IProjectService pr
     private readonly IProjectService _projectService = projectService;
 
     [Route("admin/[controller]")]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int status)
     {
         var clients = await GetClientsSelectListAsync();
-        var result = await _projectService.GetProjectsAsync();
+        var result = await _projectService.GetProjectsAsync(status);
         var projects = result.Result;
+
+        ViewBag.Status = status;
 
         var pvm = new ProjectsViewModel
         {
             Projects = projects,
-            AddProjectViewModel = new AddProjectViewModel() { Clients = clients }
+            AddProjectViewModel = new AddProjectViewModel() { Clients = clients },
         };
 
         return View(pvm);

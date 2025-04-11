@@ -2,13 +2,14 @@
 @model AddProjectViewModel
 
 @{
-    var selectedUsersJson = "[]";
+    ViewData["Title"] = "Add Project";
+    var addSelectedUsersJson = "[]";
 }
 
 <div id="addProjectModal" class="project-modal modal">
     <div class="card">
         <div class="card-header">
-            <h3>Add Project</h3>
+            <h3>@ViewData["Title"]</h3>
             <button type="button" data-type="close" data-target="#addProjectModal" class="btn btn-close"></button>
         </div>
 
@@ -78,7 +79,7 @@
                    <div class="project-members-group">
 
                         <div class="project-members">
-                            <input type="hidden" asp-for="UserIds" />
+                            <input type="hidden" asp-for="UserIds" id="UserIds" />
 
                             <div id="tagged-users" class="form-input form-tag-select">
                                 <input type="text" id="user-search" class="form-tag-input" placeholder="Add member..." />
@@ -108,7 +109,7 @@
 </div>
 
 <script>
-    const preSelectedUsers = @Html.Raw(selectedUsersJson);
+    const preAddSelectedUsers = @Html.Raw(addSelectedUsersJson);
 
     initWysiwygEditor("#project-description-editor", "#project-description-toolbar", "#project-description", "@Html.Raw(Model?.Description ?? "")");
 
@@ -122,7 +123,7 @@
         tagClass: 'user-tag',
         avatarFolder: '/images/profiles/',
         emptyMessage: 'No members found.',
-        preSelected: preSelectedUsers,
+        preSelected: preAddSelectedUsers,
         selectedInputIds: 'UserIds'
     })
 </script>

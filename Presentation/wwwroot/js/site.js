@@ -33,7 +33,12 @@ function initModals() {
             const targetElement = document.querySelector(target)
             
             if (targetElement) {
-                
+                const dropdowns = document.querySelectorAll(".dropdown-show")
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('dropdown-show')
+                })
+
+
                 targetElement.classList.add('show')
             }
         })
@@ -77,7 +82,7 @@ function initializeDropdowns() {
             if (!dropdown) return
 
             closeAllDropdowns(dropdown, dropdownElements)
-            dropdown.classList.toggle('show')
+            dropdown.classList.toggle('dropdown-show')
         })
     })
 
@@ -95,7 +100,7 @@ function initializeDropdowns() {
 function closeAllDropdowns(exceptDropdown, dropdownElements) {
     dropdownElements.forEach(dropdown => {
         if (dropdown !== exceptDropdown) {
-            dropdown.classList.remove('show')
+            dropdown.classList.remove('dropdown-show')
         }
     })
 }

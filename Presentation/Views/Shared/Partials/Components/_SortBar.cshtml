@@ -21,24 +21,50 @@
 @* Took help from ChatGpt to make the links active*@
 <div class="sort-bar-container">
     <div class="sort-links">
+
         <div class="sort-link @(ViewBag.Status == 0 ? "active-link" : "")">
-            <a asp-controller="Projects" asp-action="Index" asp-route-status="0">
-                <span>ALL [@projects.Count()]</span>
-            </a>
+            @if (projects.Count() > 0)
+            {
+                <a asp-controller="Projects" asp-action="Index" asp-route-status="0">
+                    <span>ALL [@projects.Count()]</span>
+                </a>
+            } else
+            {
+                <a class="sort-link-inactive">
+                    <span>ALL [@projects.Count()]</span>
+                </a>
+            }
             <div class="sort-link-line  @(ViewBag.Status == 0 ? "active-link" : "")"></div>
         </div>
 
+
         <div class="sort-link @(ViewBag.Status == 1 ? "active-link" : "")">
-            <a class="sort-link" asp-controller="Projects" asp-action="Index" asp-route-status="1">
-                <span>STARTED [@startedStatus.Count()]</span>
-            </a>
+            @if (startedStatus.Count() > 0)
+            {
+                <a class="sort-link" asp-controller="Projects" asp-action="Index" asp-route-status="1">
+                    <span>STARTED [@startedStatus.Count()]</span>
+                </a>
+            } else
+            {
+                <a class="sort-link-inactive">
+                    <span>STARTED [@startedStatus.Count()]</span>
+                </a>
+            }
             <div class="sort-link-line @(ViewBag.Status == 1 ? "active-link" : "")"></div>
         </div>
 
         <div class="sort-link @(ViewBag.Status == 2? "active-link" : "")">
-            <a class="sort-link" asp-controller="Projects" asp-action="Index" asp-route-status="2">
-                <span>COMPLETED [@completeStatus.Count()]</span>
-            </a>
+            @if (completeStatus.Count() > 0)
+            {
+                <a class="sort-link" asp-controller="Projects" asp-action="Index" asp-route-status="2">
+                    <span>COMPLETED [@completeStatus.Count()]</span>
+                </a>
+            } else
+            {
+                <a class="sort-link-inactive">
+                    <span>COMPLETED [@completeStatus.Count()]</span>
+                </a>
+            }
             <div class="sort-link-line @(ViewBag.Status == 2 ? "active-link" : "")"></div>
         </div>
     </div>

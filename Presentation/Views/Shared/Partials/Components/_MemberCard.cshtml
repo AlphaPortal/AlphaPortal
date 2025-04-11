@@ -10,9 +10,9 @@
             </button>
         </div>
         <div class="member-image">
-            @if (!string.IsNullOrEmpty(Model.Image))
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
             {
-                <img src="~/Images/Profiles/@Model.Image" alt="" />
+                <img src="~/Images/Profiles/@Model.ImageUrl" alt="" />
             }
             else
             {

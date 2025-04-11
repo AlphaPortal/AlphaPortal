@@ -10,10 +10,6 @@
 
 <div id="optionsMenuDropdown-@project.Id" class="options-dropdown-container card">
     <div class="option-buttons">
-       @* <form asp-controller="Projects" asp-action="EditProject" method="get" novalidate>
-            <input type="hidden" name="id" value="@project.Id" />
-            
-       </form> *@
 
         <button type="button" data-type="modal" data-target="#editProjectModal-@project.Id" class="edit-option">
             <i class="bi bi-pencil-fill"></i>
@@ -38,4 +34,4 @@
 
 </div>
 
-<partial name="Partials/Modals/_EditProjectModal" model="@Model"/>
+<partial name="Partials/Modals/_EditProjectModal" model="@project"/>

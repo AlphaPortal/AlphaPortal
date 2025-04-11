@@ -19,9 +19,9 @@ public class ProjectService(IProjectRepository projectRepository, IUserRepositor
     {
         if (projectForm != null)
         {
-            if(projectForm.Image == null)
+            if(projectForm.ImageUrl == null)
             {
-                projectForm.Image = "project_image_9.svg";
+                projectForm.ImageUrl = "project_image_9.svg";
             }
 
             var entity = ProjectFactory.Create(projectForm);
@@ -41,7 +41,7 @@ public class ProjectService(IProjectRepository projectRepository, IUserRepositor
     public async Task<ProjectResult<IEnumerable<Project>>> GetProjectsAsync(int status = 0)
     {
 
-        // Took help from ChatGpt
+        // Took help from ChatGpt handle status
         Expression<Func<ProjectEntity, bool>>? filter = status > 0 ? p => p.StatusId == status : null;
 
             var entities = await _projectRepository.GetAllAsync
@@ -89,6 +89,26 @@ public class ProjectService(IProjectRepository projectRepository, IUserRepositor
         }
 
         return new ProjectResult<Project> { Succeeded = false, StatusCode = 400, Error = result.Error };
+    }
+
+    public async Task<ProjectResult> UpdateProjectAsync(Project project)
+    {
+        if (project != null)
+        {
+            var entity = ProjectFactory.Create(project);
+            var result = await _projectRepository.UpdateAsync(entity);
+            if (result.Succeeded)
+            {
+                return new ProjectResult { Succeeded = true, StatusCode = 200 };
+            }
+            else
+            {
+                return new ProjectResult { Succeeded = true, StatusCode = 404, Error = result.Error };
+            }
+        }
+
+        return new ProjectResult { Succeeded = true, StatusCode = 400, Error = "Something wen wrong"};
+
     }
 
     public async Task<ProjectResult> RemoveProjectAsync(string id)

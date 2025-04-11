@@ -10,7 +10,7 @@ public class UserDismissNotificationEntity
     public int Id { get; set; }
 
 
-    [ForeignKey(nameof(User))]
+    //[ForeignKey(nameof(User))]
     public string UserId { get; set; } = null!;
     public virtual AppUser User { get; set; } = null!;
 

@@ -8,5 +8,6 @@ namespace Business.Interfaces
         Task<ProjectResult<Project>> GetProjectAsync(string id);
         Task<ProjectResult<IEnumerable<Project>>> GetProjectsAsync(int status);
         Task<ProjectResult> RemoveProjectAsync(string id);
+        Task<ProjectResult> UpdateProjectAsync(Project project);
     }
 }

@@ -6,7 +6,7 @@ namespace Business.Models;
 public class AddProjectForm
 {
 
-    public string? Image { get; set; }
+    public string? ImageUrl { get; set; }
     public string ProjectName { get; set; } = null!;
     public string? Description { get; set; }
     public DateTime? StartDate { get; set; }

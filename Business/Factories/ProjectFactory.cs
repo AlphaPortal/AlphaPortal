@@ -4,6 +4,7 @@ using Domain.Models;
 using static System.Net.Mime.MediaTypeNames;
 using System.Diagnostics.Metrics;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace Business.Factories;
 
@@ -13,7 +14,6 @@ public static class ProjectFactory
     {
         var entity = new ProjectEntity
         {
-            Image = project.Image,
             ProjectName = project.ProjectName,
             Description = project.Description,
             StartDate = project.StartDate,
@@ -25,6 +25,27 @@ public static class ProjectFactory
 
         return entity;
     }
+
+    public static ProjectEntity Create(Project project)
+    {
+        var entity = new ProjectEntity
+        {
+            Id = project.Id!,
+            Image = project.Image,
+            ProjectName = project.ProjectName,
+            Description = project.Description,
+            StartDate = project.StartDate,
+            EndDate = project.EndDate,
+            Budget = project.Budget,
+            Created = project.Created,
+            StatusId = project.StatusId,
+            ClientId = project.ClientId,
+            UserId = project.UserId!
+        };
+
+        return entity;
+    }
+
     public static Project Create(User user, ProjectEntity projectEntity, Client clientEntity)
     {
         var project = new Project
@@ -56,7 +77,7 @@ public static class ProjectFactory
                 JobTitle = user.JobTitle,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
-                Image = user.Image,
+                ImageUrl = user.ImageUrl,
                 StreetName = user.StreetName,
                 PostalCode = user.PostalCode,
                 City = user.City,

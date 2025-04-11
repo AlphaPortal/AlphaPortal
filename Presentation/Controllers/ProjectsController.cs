@@ -1,17 +1,20 @@
 ﻿using Business.Interfaces;
 using Business.Models;
+using Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Presentation.Models;
+using System.Security.Cryptography.Pkcs;
 
 namespace Presentation.Controllers;
 
 [Authorize]
-public class ProjectsController(IClientService clientService, IProjectService projectService) : Controller
+public class ProjectsController(IClientService clientService, IProjectService projectService, INotificationService notificationService) : Controller
 {
     private readonly IClientService _clientService = clientService;
     private readonly IProjectService _projectService = projectService;
+    private readonly INotificationService _notificationService = notificationService;
 
     [Route("admin/[controller]")]
     public async Task<IActionResult> Index(int status)
@@ -24,7 +27,7 @@ public class ProjectsController(IClientService clientService, IProjectService pr
 
         var pvm = new ProjectsViewModel
         {
-            Projects = projects,
+            Projects = projects!,
             AddProjectViewModel = new AddProjectViewModel() { Clients = clients },
         };
 
@@ -54,6 +57,14 @@ public class ProjectsController(IClientService clientService, IProjectService pr
         var result = await _projectService.CreateProjectsync(addProjectForm);
         if (result.Succeeded)
         {
+            var notificationFormData = new NotificationItemForm
+            {
+                NotificationTargetId = 1,
+                NotificationTypeId = 2,
+                Message = $"Added {model.ProjectName}",
+                Image = model.Image,
+            };
+            await _notificationService.AddNotificationAsync(notificationFormData);
             return RedirectToAction("Index");
         }
 
@@ -63,7 +74,20 @@ public class ProjectsController(IClientService clientService, IProjectService pr
     [HttpPost]
     public async Task<IActionResult> EditProject(Project project)
     {
-        return View();
+        var result = await _projectService.UpdateProjectAsync(project);
+        if (result.Succeeded)
+        {
+            var notificationFormData = new NotificationItemForm
+            {
+                NotificationTargetId = 1,
+                NotificationTypeId = 2,
+                Message = $"{project.ProjectName} - Updated",
+                Image = project.Image,
+            };
+            return RedirectToAction("Index");
+        }
+
+        return View(project);
     }
 
     [HttpPost]

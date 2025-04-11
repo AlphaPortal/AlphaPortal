@@ -794,6 +794,10 @@ form {
     justify-content: space-between;
 }
 
+.options-menu-icon {
+    cursor: pointer;
+}
+
 #projectCard {
     position: relative;
     margin: 0.5rem;
@@ -824,7 +828,6 @@ form {
         height: 24px;
         border: none;
         background-color: transparent;
-        cursor: pointer;
     }
 
     #projectCard .project-description {
@@ -883,7 +886,7 @@ form {
     left: 65px;
 }
 
-.options-dropdown-container.show {
+.options-dropdown-container.dropdown-show {
     display: block;
 }
 
@@ -1407,7 +1410,7 @@ form {
     z-index: 999;
 }
 
-.notifications-dropdown-container.show {
+.notifications-dropdown-container.dropdown-show {
     display: block;
 }
 
@@ -1525,7 +1528,7 @@ form {
     z-index: 999;
 }
 
-.settings-dropdown.show {
+.settings-dropdown.dropdown-show {
     display: block;
 }
 
@@ -1558,7 +1561,7 @@ form {
     z-index: 999;
 }
 
-    .profile-dropdown.show {
+    .profile-dropdown.dropdown-show {
         display: block;
     }
 
@@ -1713,6 +1716,9 @@ input:checked + .slider:before {
     border-top-right-radius: 3px;
 }
 
+.sort-link-inactive:hover {
+    text-decoration: none;
+}
 
 .wysiwyg-container textarea {
     display: none;

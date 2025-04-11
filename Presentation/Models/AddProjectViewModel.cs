@@ -7,8 +7,8 @@ public class AddProjectViewModel
 {
     [DataType(DataType.Upload)]
     [Display(Name = "Project Image", Prompt = "Select project image")]
-    public IFormFile? Image { get; set; }
-
+    public IFormFile? ImageUrl { get; set; }
+    public string Image { get; set; } = "project_image_9";
     [Required]
     [DataType(DataType.Text)]
     [Display(Name = "Project Name", Prompt = "Enter project name")]

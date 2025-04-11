@@ -7,9 +7,9 @@
 }
 
 <div class="profile-menu-container">
-    @if (!string.IsNullOrEmpty(profile!.Image))
+    @if (!string.IsNullOrEmpty(profile!.ImageUrl))
     {
-        <img id="profileAvatar" data-type="dropdown" data-target="#profileDropdown" class="profile-avatar" src="~/Images/Profiles/@profile!.Image" alt="@displayName" />
+        <img id="profileAvatar" data-type="dropdown" data-target="#profileDropdown" class="profile-avatar" src="~/Images/Profiles/@profile!.ImageUrl" alt="@displayName" />
     }
     else
     {
@@ -20,9 +20,9 @@
 
 <div id="profileDropdown" class="profile-dropdown">
     <div class="profile-info">
-        @if (!string.IsNullOrEmpty(profile!.Image))
+        @if (!string.IsNullOrEmpty(profile!.ImageUrl))
         {
-            <img class="profile-avatar-mini" src="~/Images/Profiles/@profile!.Image" alt="@displayName" />
+            <img class="profile-avatar-mini" src="~/Images/Profiles/@profile!.ImageUrl" alt="@displayName" />
         }
         else
         {

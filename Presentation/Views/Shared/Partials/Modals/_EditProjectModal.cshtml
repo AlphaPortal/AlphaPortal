@@ -1,8 +1,22 @@
 ﻿@model Project
 
 @{
+    ViewData["Title"] = "Edit Project";
+
     var project = Model;
+
     var userId = project.UserId;
+    UserResult<User> userResult = await userService.GetUserByIdAsync(userId);
+    List<User> userList = [];
+    userList.Add(userResult.Result!);
+
+    var options = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            };
+
+    var jsonList = JsonSerializer.Serialize(userList, options);
+
     var clientsResult = await clientService.GetClientsAsync();
     var clients = clientsResult.Result!.Select(c => new SelectListItem
     {
@@ -14,17 +28,20 @@
 <div id="editProjectModal-@project.Id" class="project-modal modal">
     <div class="card">
         <div class="card-header">
-            <h3>Add Project</h3>
+            <h3>@ViewData["Title"]</h3>
             <button type="button" data-type="close" data-target="#editProjectModal-@project.Id" class="btn btn-close"></button>
         </div>
 
         <div class="card-body">
             <form asp-controller="Projects" asp-action="EditProject" method="post" enctype="multipart/form-data" data-target="#editProjectModal-@project.Id" novalidate>
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="StatusId" />
+                <input type="hidden" asp-for="Image" />
 
                 <div class="image-preview-container">
                     <img src="~/Images/Projects/@project.Image" />
                 </div>
-
+                <div>Status ID: @Model.StatusId</div>
                 <div class="form-group">
                     <label asp-for="ProjectName"></label>
                     <input asp-for="ProjectName" />
@@ -123,7 +140,7 @@
         tagClass: 'user-tag',
         avatarFolder: '/images/profiles/',
         emptyMessage: 'No members found.',
-        preSelected: preSelectedUsers,
+        preSelected: @Html.Raw(jsonList),
         selectedInputIds: 'UserId'
     })
 </script>

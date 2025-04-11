@@ -118,7 +118,7 @@
 
     function addTag(item) {
         const id = item.id
-
+        console.log("Selected user: ", id)
         if (selectedIds.includes(id)) return;
 
         selectedIds.push(id);
@@ -171,8 +171,6 @@
     }
 
     function updateSelectedIdsInput() {
-        console.log(selectedIds)
-
         const hiddenInput = selectedInputIds;
         if (hiddenInput) {
             hiddenInput.value = selectedIds;

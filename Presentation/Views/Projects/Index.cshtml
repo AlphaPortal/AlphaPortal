@@ -18,7 +18,11 @@
         {
             foreach (var project in Model.Projects)
             {
-                @await Html.PartialAsync("Partials/Components/_ProjectCard", project)
+                var viewModel = new CardMenuViewModel {
+                  Project = project,  
+                };
+
+                @await Html.PartialAsync("Partials/Components/_ProjectCard", viewModel)
             }
         }
         else

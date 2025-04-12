@@ -1317,9 +1317,68 @@ form {
     }
 
 /* ============================= */
-/*       Member Modal           */
+/*  Client  & Client card      */
 /* ============================= */
 
+.clients-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.clients {
+    margin: 0;
+    margin-top: 1rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    max-height: 68vh; /* Limits the heigt so there is room for other elements */
+    padding-right: 5px; /* Prevent that the scroll bar overlap */
+}
+
+#clientCard {
+    position: relative;
+    width: 350px;
+    min-height: 250px;
+}
+
+.client-card-header {
+    display: grid;
+}
+
+.client-menu-btn {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.client-image-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.client-image-container > img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.client-card-body {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+    .client-card-body > h4 {
+        width: 100%;
+        text-align: center;
+    }
+
+/* ============================= */
+/*       Member Modal           */
+/* ============================= */
 #addMemberModal .image-preview-container {
     width: 100%;
     display: flex;

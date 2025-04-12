@@ -1,25 +1,29 @@
-﻿@model Project
+﻿@model CardMenuViewModel
+
+@{
+    var project = Model.Project;
+}
 
 <div id="projectCard" class="card">
     <div class="project-card-header">
-        <img class="project-image" src="~/Images/Projects/@Model.Image" alt="Card Image"/>
+        <img class="project-image" src="~/Images/Projects/@project?.Image" alt="Card Image" />
 
-        <span class="project-title">@Model.ProjectName</span>
-        <span class="project-description">@Model.Client.ClientName</span>
+        <span class="project-title">@project?.ProjectName</span>
+        <span class="project-description">@project?.Client.ClientName</span>
 
         <div class="project-menu-btn">
-            <partial name="Partials/Components/_CardOptionsMenu" model="@Model"/>
+            <partial name="Partials/Components/_CardOptionsMenu" model="@Model" />
         </div>
     </div>
     <main class="card-body">
-        <p id="project-description">@Html.Raw(Model.Description)</p>
+        <p id="project-description">@Html.Raw(project?.Description)</p>
     </main>
     <footer class="card-footer">
         <div class="time-left">
             <i class="bi bi-clock-fill"></i>
-            <div class="end-time" data-enddate="@Model.EndDate?.ToString("s")">@Model.EndDate</div>
+            <div class="end-time" data-enddate="@project?.EndDate?.ToString("s")">@project?.EndDate</div>
         </div>
 
-        <img class="project-card-profile-image" src="~/Images/Profiles/@Model.User.ImageUrl" />
+        <img class="project-card-profile-image" src="~/Images/Profiles/@project?.User.ImageUrl" />
     </footer>
 </div>

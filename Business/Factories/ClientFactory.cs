@@ -10,6 +10,7 @@ public static class ClientFactory
         var clients = entity.Select(e => new Client
         {
             Id = e.Id,
+            Image = e.Image,
             ClientName = e.ClientName,
         });
 
@@ -21,6 +22,7 @@ public static class ClientFactory
         var client = new Client
         {
             Id = entity.Id,
+            Image = entity.Image,
             ClientName = entity.ClientName,
         };
 

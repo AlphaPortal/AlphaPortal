@@ -1,0 +1,20 @@
+﻿@model CardMenuViewModel
+
+@{
+    var client = Model.Client;
+}
+
+<div id="clientCard" class="card">
+    <div class="client-card-header">
+        <div class="client-menu-btn">
+            <partial name="Partials/Components/_CardOptionsMenu" model="@Model" />
+        </div>
+        <div class="client-image-container">
+            <img class="client-image" src="~/Images/Clients/@client?.Image" alt="Client Card Image" />
+        </div>
+    </div>
+
+    <main class="client-card-body">
+        <h4 class="client-title">@client?.ClientName</h4>
+    </main>
+</div>

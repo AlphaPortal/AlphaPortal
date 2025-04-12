@@ -13,4 +13,9 @@
         <i class="fa-duotone fa-solid fa-user-group"></i>
         <span>Members</span>
     </a>
+
+    <a class="nav-link @(Context.Request.Path == "/admin/clients" ? "active" : "")" asp-controller="Clients" asp-action="Index">
+        <i class="fa-solid fa-handshake"></i>
+        <span>Clients</span>
+    </a>
 </div>

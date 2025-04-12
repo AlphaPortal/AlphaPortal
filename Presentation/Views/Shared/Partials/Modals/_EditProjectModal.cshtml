@@ -23,6 +23,13 @@
         Value = c.Id.ToString(),
         Text = c.ClientName,
     }).ToList();
+
+    var statusesResult = await statusService.GetStatusesAsync();
+    var statuses = statusesResult.Result!.Select(s => new SelectListItem
+    {
+        Value = s.Id.ToString(),
+        Text = s.StatusName
+    }).ToList();
 }
 
 <div id="editProjectModal-@project.Id" class="project-modal modal">
@@ -35,17 +42,23 @@
         <div class="card-body">
             <form asp-controller="Projects" asp-action="EditProject" method="post" enctype="multipart/form-data" data-target="#editProjectModal-@project.Id" novalidate>
                 <input type="hidden" asp-for="Id" />
-                <input type="hidden" asp-for="StatusId" />
                 <input type="hidden" asp-for="Image" />
 
                 <div class="image-preview-container">
                     <img src="~/Images/Projects/@project.Image" />
                 </div>
-                <div>Status ID: @Model.StatusId</div>
+                
                 <div class="form-group">
                     <label asp-for="ProjectName"></label>
                     <input asp-for="ProjectName" />
 
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="StatusId"></label>
+                    <select asp-for="StatusId" asp-items="@statuses">
+                        <option value="" selected hidden disabled>Choose Status</option>
+                    </select>
                 </div>
 
                 <div class="form-group">

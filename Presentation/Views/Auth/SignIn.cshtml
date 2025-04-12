@@ -17,6 +17,8 @@
     </div>
 
     <form asp-controller="Auth" asp-action="ExternalSignIn" method="post" class="external-account" novalidate>
+        <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+
         <button type="submit" name="provider" value="Google" class="btn-external btn-google">
             <div class="btn-external-content">
                 <i class="bi bi-google"></i>

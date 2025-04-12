@@ -4,12 +4,13 @@ using Data.Extensions;
 using Business.Extensions;
 using Hubs;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddSignalR();
 
-builder.Services.AddLocalAuthentication(builder.Configuration.GetConnectionString("UsersDatabase")!);
+builder.Services.AddLocalAuthentication(builder, builder.Configuration.GetConnectionString("UsersDatabase")!);
 builder.Services.AddDataContext(builder.Configuration.GetConnectionString("AlphaPortalDatabase")!);
 //builder.Services.AddLocalIdentity(builder.Configuration);
 builder.Services.AddRepositories(builder.Configuration);

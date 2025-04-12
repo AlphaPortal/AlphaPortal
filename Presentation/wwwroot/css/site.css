@@ -1010,13 +1010,17 @@ form {
         width: 100%;
         display: flex;
         justify-content: center;
+        align-items: center;
     }
 
-        #memberCard .jobtitle-container .jobtitle {
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            background-color: var(--gray-200);
-        }
+    #memberCard .jobtitle-container .jobtitle {
+        min-width: 100px;
+        height: 35px;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        background-color: var(--gray-200);
+        text-align: center;
+    }
 
     #memberCard .member-card-footer {
         margin-top: 1rem;

@@ -11,12 +11,13 @@ using System.Security.Cryptography.Pkcs;
 namespace Presentation.Controllers;
 
 [Authorize]
-public class ProjectsController(IClientService clientService, IProjectService projectService, INotificationService notificationService, IWebHostEnvironment env) : Controller
+public class ProjectsController(IClientService clientService, IProjectService projectService, INotificationService notificationService, IWebHostEnvironment env, IAzureFileHandler fileHandler) : Controller
 {
     private readonly IClientService _clientService = clientService;
     private readonly IProjectService _projectService = projectService;
     private readonly INotificationService _notificationService = notificationService;
     private readonly IWebHostEnvironment _env = env;
+    private readonly IAzureFileHandler _fileHandler = fileHandler;
 
     [Route("admin/[controller]")]
     public async Task<IActionResult> Index(int status)
@@ -45,30 +46,33 @@ public class ProjectsController(IClientService clientService, IProjectService pr
             return View(model);
         }
 
-        var uploadFolder = Path.Combine(_env.WebRootPath, "Images/Projects");
-        Directory.CreateDirectory(uploadFolder);
+        var imageFileUri = await _fileHandler.UploadFileAsync(model.ImageUrl);
 
-        var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(model.ImageUrl.FileName)}";
-        var filePath = Path.Combine(uploadFolder, fileName);
 
-        using (var stram = new FileStream(filePath, FileMode.Create))
-        {
-            await model.ImageUrl.CopyToAsync(stram);
-        }
+        //var uploadFolder = Path.Combine(_env.WebRootPath, "Images/Projects");
+        //Directory.CreateDirectory(uploadFolder);
+
+        //var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(model.ImageUrl.FileName)}";
+        //var filePath = Path.Combine(uploadFolder, imageFileUri);
+
+        //using (var stram = new FileStream(filePath, FileMode.Create))
+        //{
+        //    await model.ImageUrl.CopyToAsync(stram);
+        //}
 
         ViewBag.Message = "File was uploaded siccwssfully.";
 
-            var addProjectForm = new AddProjectForm
-            {
-                ImageUrl = fileName,
-                ProjectName = model.ProjectName,
-                Description = model.Description,
-                StartDate = model.StartDate,
-                EndDate = model.EndDate,
-                ClientId = model.ClientId,
-                Budget = model.Budget,
-                UserId = model.UserIds,
-            };
+        var addProjectForm = new AddProjectForm
+        {
+            ImageUrl = imageFileUri,
+            ProjectName = model.ProjectName,
+            Description = model.Description,
+            StartDate = model.StartDate,
+            EndDate = model.EndDate,
+            ClientId = model.ClientId,
+            Budget = model.Budget,
+            UserId = model.UserIds,
+        };
 
         var result = await _projectService.CreateProjectsync(addProjectForm);
         if (result.Succeeded)

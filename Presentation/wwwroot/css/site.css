@@ -215,6 +215,10 @@ html, body {
     height: 100dvh;
 }
 
+.hidden {
+    display: none !important;
+}
+
 /* ============================= */
 /*         Header & Logotyp      */
 /* ============================= */
@@ -1193,7 +1197,8 @@ form {
     justify-content: center;
     align-items: center;
     border: 1px dashed var(--border-color);
-    border-radius: 20px;
+    border-radius: 30px;
+    overflow: hidden;
 }
 
 .image-preview-container > img {
@@ -1213,6 +1218,12 @@ form {
 
 .circle-image .bi-camera-fill {
     color: var(--gray-600);
+}
+
+#image-preview {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
 }
 
 .project-modal .card {

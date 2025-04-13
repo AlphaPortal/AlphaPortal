@@ -14,6 +14,7 @@ public static class ProjectFactory
     {
         var entity = new ProjectEntity
         {
+            Image = project.ImageUrl,
             ProjectName = project.ProjectName,
             Description = project.Description,
             StartDate = project.StartDate,

@@ -5,7 +5,7 @@ namespace Presentation.Models;
 public class AddMemberViewModel
 {
     [DataType(DataType.Upload)]
-    [Display(Name = "Project Image", Prompt = "Select project image")]
+    [Display(Name = "Member Image", Prompt = "Select member image")]
     public IFormFile? Image { get; set; }
 
     [Required(ErrorMessage = "This field is required.")]

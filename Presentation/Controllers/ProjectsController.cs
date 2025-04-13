@@ -5,16 +5,18 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Presentation.Models;
+using System.Security.Claims;
 using System.Security.Cryptography.Pkcs;
 
 namespace Presentation.Controllers;
 
 [Authorize]
-public class ProjectsController(IClientService clientService, IProjectService projectService, INotificationService notificationService) : Controller
+public class ProjectsController(IClientService clientService, IProjectService projectService, INotificationService notificationService, IWebHostEnvironment env) : Controller
 {
     private readonly IClientService _clientService = clientService;
     private readonly IProjectService _projectService = projectService;
     private readonly INotificationService _notificationService = notificationService;
+    private readonly IWebHostEnvironment _env = env;
 
     [Route("admin/[controller]")]
     public async Task<IActionResult> Index(int status)
@@ -38,21 +40,35 @@ public class ProjectsController(IClientService clientService, IProjectService pr
     [HttpPost]
     public async Task<IActionResult> AddProject(AddProjectViewModel model)
     {
-        if (!ModelState.IsValid)
+        if (!ModelState.IsValid || model.ImageUrl == null || model.ImageUrl.Length == 0)
         {
-            return BadRequest();
+            return View(model);
         }
 
-        var addProjectForm = new AddProjectForm
+        var uploadFolder = Path.Combine(_env.WebRootPath, "Images/Projects");
+        Directory.CreateDirectory(uploadFolder);
+
+        var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(model.ImageUrl.FileName)}";
+        var filePath = Path.Combine(uploadFolder, fileName);
+
+        using (var stram = new FileStream(filePath, FileMode.Create))
         {
-            ProjectName = model.ProjectName,
-            Description = model.Description,
-            StartDate = model.StartDate,
-            EndDate = model.EndDate,
-            ClientId = model.ClientId,
-            Budget = model.Budget,
-            UserId = model.UserIds,
-        };
+            await model.ImageUrl.CopyToAsync(stram);
+        }
+
+        ViewBag.Message = "File was uploaded siccwssfully.";
+
+            var addProjectForm = new AddProjectForm
+            {
+                ImageUrl = fileName,
+                ProjectName = model.ProjectName,
+                Description = model.Description,
+                StartDate = model.StartDate,
+                EndDate = model.EndDate,
+                ClientId = model.ClientId,
+                Budget = model.Budget,
+                UserId = model.UserIds,
+            };
 
         var result = await _projectService.CreateProjectsync(addProjectForm);
         if (result.Succeeded)

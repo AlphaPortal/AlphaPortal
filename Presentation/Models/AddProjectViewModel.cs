@@ -5,6 +5,7 @@ namespace Presentation.Models;
 
 public class AddProjectViewModel
 {
+    [Required]
     [DataType(DataType.Upload)]
     [Display(Name = "Project Image", Prompt = "Select project image")]
     public IFormFile? ImageUrl { get; set; }

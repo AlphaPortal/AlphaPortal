@@ -15,8 +15,8 @@ public class AzureFileHandler(string connectionString, string containerName) : I
             return null!;
         } 
 
-        var fileExtension = Path.GetExtension(file.Name);
-        var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(file.Name)}";
+        var fileExtension = Path.GetExtension(file.FileName);
+        var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(file.FileName)}";
 
         string contentType = !string.IsNullOrEmpty(file.ContentType)
             ? file.ContentType

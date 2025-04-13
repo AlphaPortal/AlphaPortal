@@ -24,6 +24,7 @@
                         <input asp-for="ImageUrl" accept="image/*" class="hidden" />
                         <img id="image-preview" src="#" alt="Image Preview" class="hidden" />
                     </div>
+                    <span asp-validation-for="ImageUrl"></span>
                 </div>
 
                 
@@ -31,7 +32,7 @@
                 <div class="form-group">
                      <label asp-for="ProjectName"></label>
                      <input asp-for="ProjectName" />
-                    
+                    <span asp-validation-for="ProjectName"></span>
                 </div>
 
                 <div class="form-group">
@@ -39,6 +40,7 @@
                     <select asp-for="ClientId" asp-items="Model.Clients">
                         <option value="" selected hidden disabled>Choose Client</option>
                     </select>
+                    <span asp-validation-for="ClientId"></span>
                 </div>
 
                 <div class="form-group">
@@ -66,16 +68,19 @@
                             </span>
                         </div>
                     </div>
+                    <span asp-validation-for="Description" ></span>
                 </div>
 
                 <div class="date-group">
                     <div class="date-label">
                         <label asp-for="StartDate"></label>
                         <input asp-for="StartDate"/>
+                        <span asp-validation-for="StartDate"></span>
                     </div>
                     <div class="date-label">
                         <label asp-for="EndDate"></label>
                         <input asp-for="EndDate"/>
+                        <span asp-validation-for="EndDate"></span>
                     </div>
                 </div>
 
@@ -95,6 +100,7 @@
 
                         <label for="user-search" ><i class="bi bi-search"></i></label>
                    </div>
+                   <span asp-validation-for="UserIds"></span>
                 </div>
 
                 <div class="budget-group">
@@ -103,6 +109,7 @@
                         <i class="bi bi-currency-dollar"></i>
                         <input placeholder="0" asp-for="Budget"/>
                    </div>
+                   <span asp-validation-for="Budget"></span>
                 </div>
 
                 <button type="submit" class="btn btn-submit">Create</button>
@@ -111,6 +118,8 @@
         </div>
     </div>
 </div>
+
+@await Html.PartialAsync("_ValidationScripts")
 
 <script>
     const preAddSelectedUsers = @Html.Raw(addSelectedUsersJson);

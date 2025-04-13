@@ -37,14 +37,23 @@ public class ProjectsController(IClientService clientService, IProjectService pr
         return View(pvm);
     }
 
+    [Route("auth/addProject")]
+    public IActionResult AddProject()
+    {
+        return View();
+    }
 
     [HttpPost]
+    [Route("auth/addProject")]
     public async Task<IActionResult> AddProject(AddProjectViewModel model)
     {
         if (!ModelState.IsValid || model.ImageUrl == null || model.ImageUrl.Length == 0)
         {
-            return View(model);
+            return LocalRedirect("~/admin/Projects");
         }
+
+        var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+
 
         var imageFileUri = await _fileHandler.UploadFileAsync(model.ImageUrl);
 

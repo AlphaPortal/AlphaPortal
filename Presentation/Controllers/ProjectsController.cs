@@ -60,7 +60,7 @@ public class ProjectsController(IClientService clientService, IProjectService pr
         //    await model.ImageUrl.CopyToAsync(stram);
         //}
 
-        ViewBag.Message = "File was uploaded siccwssfully.";
+        //ViewBag.Message = "File was uploaded siccwssfully.";
 
         var addProjectForm = new AddProjectForm
         {

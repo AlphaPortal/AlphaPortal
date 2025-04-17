@@ -5,7 +5,7 @@ namespace Presentation.Models;
 public class SignUpViewModel
 {
     [Required(ErrorMessage = "is required")]
-    [DataType(DataType.EmailAddress)]
+    [DataType(DataType.Text)]
     [Display(Name = "First Name", Prompt = "Enter first name")]
     public string FirstName { get; set; } = null!;
 
@@ -19,14 +19,14 @@ public class SignUpViewModel
     [Required(ErrorMessage = "is required")]
     [DataType(DataType.EmailAddress)]
     [Display(Name = "Email", Prompt = "Enter email address")]
-    [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Invalid emial")]
+    [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Invalid email")]
     public string Email { get; set; } = null!;
 
 
     [Required(ErrorMessage = "is required")]
     [DataType(DataType.Password)]
     [Display(Name = "Password", Prompt = "Enter password")]
-    [RegularExpression(@"^(?=.*[a-ö])(?=.*[A-Ö])(?=.*\d)(?=.*[\W_]).{8,}$", ErrorMessage = "You must enter a strong password.")]
+    [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$", ErrorMessage = "You must enter a strong password.")]
     public string Password { get; set; } = null!;
 
 

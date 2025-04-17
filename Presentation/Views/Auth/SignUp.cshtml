@@ -71,3 +71,27 @@
     </div>
 
 </section>
+
+@await Html.PartialAsync("_ValidationScript")
+
+<script>
+        const form = document.querySelector('form');
+
+        if (!form) return;
+
+        const fields = form.querySelectorAll('input, select, textarea');
+
+        fields.forEach(field => {
+            field.addEventListener('input', () => {
+                const validationMessage = field.parentElement.querySelector('.field-validation-error');
+
+                if (field.checkValidity()) {
+                    field.classList.remove('input-validation-error');
+
+                    if (validationMessage) {
+                        validationMessage.style.display = 'none';
+                    }
+                }
+            });
+        });
+</script>

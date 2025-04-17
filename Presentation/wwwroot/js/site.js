@@ -7,9 +7,28 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeDropdowns()
     initToggles()
 
+
+    const form = document.querySelector("form")
+
+    if (!form) return;
+
+    const fields = form.querySelectorAll("input[data-val='true']")
+
+    fields.forEach(field => {
+        field.addEventListener("input", function () {
+            validateField(field)
+        })
+    })
+
+
     updateRelativeTimes();
     updateTimeRemaining();
-    setInterval(updateRelativeTimes, updateTimeRemaining, 60000);
+    
+
+    setInterval(() => {
+        updateRelativeTimes();
+        updateTimeRemaining();
+    }, 60000)
 })
 
 function initMobileMenu() {

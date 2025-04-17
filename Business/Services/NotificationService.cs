@@ -45,11 +45,11 @@ public class NotificationService(INotificationRepository notificationRepository,
             {
                 // User
                 case 1:
-                    form.Image = $"/Images/Profiles/{form.Image}";
+                    form.Image = form.Image;
                     break;
                 // Project
                 case 2:
-                    form.Image = $"/Images/Projects/{form.Image}";
+                    form.Image = form.Image;
                     break;
             }
 
